@@ -97,7 +97,7 @@ Create a new C<MIDI::Bassline::Walk> object.
   $notes = $bassline->generate;
   $notes = $bassline->generate($chord, $n);
 
-Generate B<n> MIDI pitch numbers given the given B<chord>.
+Generate B<n> MIDI pitch numbers given the B<chord>.
 
 Defaults:
 
