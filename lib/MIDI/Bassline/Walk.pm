@@ -151,6 +151,12 @@ sub generate {
             ($flavor =~ /7/ && $x eq $tones[6])
             ||
             ($flavor =~ /[#b]9/ && $x eq $tones[1])
+            ||
+            ($flavor =~ /dim/ && $x eq $tones[2])
+            ||
+            ($flavor =~ /dim/ && $x eq $tones[6])
+            ||
+            ($flavor =~ /aug/ && $x eq $tones[6])
         ) {
             print "DROP: $x\n" if $self->verbose;
             next;
