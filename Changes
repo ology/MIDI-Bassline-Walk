@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Attempt to fix diminished chords...
 
 0.0101 2021-05-17 10:25:54
     - Improve documentation.
