@@ -95,23 +95,22 @@ Create a new C<MIDI::Bassline::Walk> object.
 =head2 generate
 
   $notes = $bassline->generate;
-  $notes = $bassline->generate($chord, $duration);
+  $notes = $bassline->generate($chord, $n);
 
-Generate a walking bassline over the given B<chord> for B<duration>
-quarter notes.
+Generate B<n> MIDI pitch numbers given the given B<chord>.
 
 Defaults:
 
   chord: C
-  duration: 4
+  n: 4
 
 =cut
 
 sub generate {
-    my ($self, $chord, $duration) = @_;
+    my ($self, $chord, $num) = @_;
 
     $chord ||= 'C';
-    $duration ||= 4;
+    $num ||= 4;
 
     my $scale = $chord =~ /^[A-G][#b]?m/ ? 'minor' : 'major';
 
@@ -172,10 +171,7 @@ sub generate {
     $voice->context($fixed[int @fixed / 2]);
 
     # Choose Or Die!!
-    my @chosen;
-    for (1 .. $duration) {
-        push @chosen, $voice->rand;
-    }
+    my @chosen = map { $voice->rand } 1 .. $num;;
 
     # Show them what they've won, Bob!
     @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @chosen;
