@@ -30,7 +30,7 @@ use namespace::clean;
 
 C<MIDI::Bassline::Walk> generates randomized, walking basslines.
 
-The logic (and music theory) implemented here, definitely generates
+The logic (and music theory) implemented here, definitely can generate
 some sour notes.  And sometimes too much!  This is an approximate
 composition tool, and not a drop-in bass player.  Import the rendered
 MIDI into a DAW and alter things until they are suitable.
