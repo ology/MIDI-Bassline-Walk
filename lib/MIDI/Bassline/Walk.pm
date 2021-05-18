@@ -163,7 +163,7 @@ sub generate {
         if (
             ($flavor =~ /5/ && $x eq $tones[4])
             ||
-            ($flavor =~ /7/ && $x eq $tones[6])
+            ($flavor =~ /7/ && $flavor !~ /M7/ && $x eq $tones[6])
             ||
             ($flavor =~ /[#b]9/ && $x eq $tones[1])
             ||
