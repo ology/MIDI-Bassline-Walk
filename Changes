@@ -1,6 +1,8 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+
+0.0105 2021-05-18 12:53:19
     - Don't drop the 7th note from a maj7 chord.
 
 0.0104 2021-05-17 20:19:08
