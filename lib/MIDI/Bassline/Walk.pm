@@ -121,6 +121,8 @@ sub generate {
     $chord ||= 'C';
     $num ||= 4;
 
+    print "* CHORD: $chord\n" if $self->verbose;
+
     my $scale = $chord =~ /^[A-G][#b]?m/ ? 'minor' : 'major';
 
     # Parse the chord
@@ -143,14 +145,14 @@ sub generate {
         if (not any { $_ eq $n } @named) {
             my $x = Music::Note->new($n, 'ISO')->format('midinum');
             push @pitches, $x;
-            print "$chord ADDS: $n\n" if $self->verbose;
+            print "\tADD: $n\n" if $self->verbose;
         }
     }
     @pitches = sort { $a <=> $b } @pitches; # Pitches are midi numbers
 
     # Determine if we should skip certain notes given the chord flavor
     my @tones = get_scale_notes($chord_note, $scale);
-    print "SCALE: ",ddc(\@tones) if $self->verbose;
+    print "\tSCALE: ",ddc(\@tones) if $self->verbose;
     my @fixed;
     for my $p (@pitches) {
         my $x = Music::Note->new($p, 'midinum')->format('isobase');
@@ -167,7 +169,7 @@ sub generate {
             ||
             ($flavor =~ /aug/ && $x eq $tones[6])
         ) {
-            print "DROP: $x\n" if $self->verbose;
+            print "\tDROP: $x\n" if $self->verbose;
             next;
         }
         push @fixed, $p;
@@ -175,7 +177,7 @@ sub generate {
 
     # Debugging:
     @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @fixed;
-    print "NOTES: ",ddc(\@named) if $self->verbose;
+    print "\tNOTES: ",ddc(\@named) if $self->verbose;
 
     my $voice = Music::VoiceGen->new(
         pitches   => \@fixed,
@@ -190,7 +192,7 @@ sub generate {
 
     # Show them what they've won, Bob!
     @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @chosen;
-    print "CHOSEN: $chord: ",ddc(\@named) if $self->verbose;
+    print "\tCHOSEN: ",ddc(\@named) if $self->verbose;
 
     return \@chosen;
 }
