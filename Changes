@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Don't drop the 7th note from a maj7 chord.
+
+0.0104 2021-05-17 20:19:08
     - Improve documentation.
     - Use croak instead of die.
 
