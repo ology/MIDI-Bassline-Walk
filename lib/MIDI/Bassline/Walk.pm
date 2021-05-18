@@ -57,7 +57,7 @@ Default: C<-3 -2 -1 1 2 3>
 
 has intervals => (
     is  => 'ro',
-    isa => sub { die 'not an array reference' unless ref $_[0] eq 'ARRAY' },
+    isa => sub { croak 'not an array reference' unless ref $_[0] eq 'ARRAY' },
     default => sub { [qw(-3 -2 -1 1 2 3)] },
 );
 
@@ -73,7 +73,7 @@ Default: C<2>
 
 has octave => (
     is  => 'ro',
-    isa => sub { die 'not a positive integer' unless $_[0] =~ /^\d+$/ },
+    isa => sub { croak 'not a positive integer' unless $_[0] =~ /^\d+$/ },
     default => sub { 2 },
 );
 
@@ -89,7 +89,7 @@ Default: C<0>
 
 has verbose => (
     is  => 'ro',
-    isa => sub { die 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    isa => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
     default => sub { 0 },
 );
 
