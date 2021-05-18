@@ -6,8 +6,6 @@ use Test::More;
 
 use_ok 'MIDI::Bassline::Walk';
 
-new_ok 'MIDI::Bassline::Walk';
-
 my $obj = new_ok 'MIDI::Bassline::Walk' => [ verbose => 1 ];
 
 my $expect = [qw(-3 -2 -1 1 2 3)];
