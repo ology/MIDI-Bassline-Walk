@@ -35,9 +35,9 @@ of the chord-root scale, plus the notes of the chord that may differ,
 minus the notes those replaced."
 
 The logic (and music theory) implemented here, can generate some sour
-notes.  And sometimes too much!  This is an approximate composition
-tool, and not a drop-in bass player.  Import the rendered MIDI into a
-DAW and alter things until they are suitable.
+notes.  This is an approximate composition tool, and not a drop-in
+bass player.  Import the rendered MIDI into a DAW and alter things
+until they are suitable.
 
 The chords recognized by this module, are those known to
 L<Music::Chord::Note>.  Please see the source of that module for the
