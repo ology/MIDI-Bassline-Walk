@@ -21,7 +21,7 @@ use namespace::clean;
 
   my $bassline = MIDI::Bassline::Walk->new(verbose => 1);
 
-  my $notes = $bassline->generate('C7b5', 4);
+  my $notes = $bassline->generate('C7b5', 8);
 
   # MIDI:
   # $score->n('qn', $_) for @$notes;
