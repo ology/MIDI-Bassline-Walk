@@ -35,6 +35,10 @@ notes.  And sometimes too much!  This is an approximate composition
 tool, and not a drop-in bass player.  Import the rendered MIDI into a
 DAW and alter things until they are suitable.
 
+The chords recognized by this module, are those known by
+L<Music::Chord::Note>.  Please see the source of that module for the
+list.
+
 =head1 ATTRIBUTES
 
 =head2 intervals
