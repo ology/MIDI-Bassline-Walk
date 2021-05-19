@@ -81,7 +81,7 @@ has octave => (
 
   $scale = $bassline->scale;
 
-The musical scale to use based on a given chord (C<$_[0]> here).
+The musical scale to use, based on a given chord (C<$_[0]> here).
 
 Default: C<sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' }>
 
