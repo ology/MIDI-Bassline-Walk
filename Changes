@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Restrict note skipping to major or minor scales.
+
+0.0202 2021-05-19 11:58:45
     - Fix ugly logic typos.
 
 0.0201 2021-05-19 11:24:55
