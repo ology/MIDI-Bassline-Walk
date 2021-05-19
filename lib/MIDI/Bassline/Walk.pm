@@ -161,19 +161,27 @@ sub generate {
     print "\tSCALE: ",ddc(\@tones) if $self->verbose;
     my @fixed;
     for my $p (@pitches) {
-        my $x = Music::Note->new($p, 'midinum')->format('isobase');
+        my $n = Music::Note->new($p, 'midinum');
+        my $x = $n->format('isobase');
+        if ($x =~ /#/) {
+            $n->en_eq('flat');
+        }
+        elsif ($x =~ /b/) {
+            $n->en_eq('sharp');
+        }
+        my $y = $n->format('isobase');
         if (
-            ($flavor =~ /[#b]5/ && $x eq $tones[4])
+            ($flavor =~ /[#b]5/ && ($x eq $tones[4] || $y eq $tones[6]))
             ||
-            ($flavor =~ /7/ && $flavor !~ /[Mm]7/ && $x eq $tones[6])
+            ($flavor =~ /7/ && $flavor !~ /[Mm]7/ && ($x eq $tones[6] || $y eq $tones[6]))
             ||
-            ($flavor =~ /[#b]9/ && $x eq $tones[1])
+            ($flavor =~ /[#b]9/ && ($x eq $tones[1] || $y eq $tones[6]))
             ||
-            ($flavor =~ /dim/ && $x eq $tones[2])
+            ($flavor =~ /dim/ && ($x eq $tones[2] || $y eq $tones[6]))
             ||
-            ($flavor =~ /dim/ && $x eq $tones[6])
+            ($flavor =~ /dim/ && ($x eq $tones[6] || $y eq $tones[6]))
             ||
-            ($flavor =~ /aug/ && $x eq $tones[6])
+            ($flavor =~ /aug/ && ($x eq $tones[6] || $y eq $tones[6]))
         ) {
             print "\tDROP: $x\n" if $self->verbose;
             next;
