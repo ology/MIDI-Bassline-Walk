@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Fix ugly logic typos.
+
+0.0201 2021-05-19 11:24:55
     - Improve documentation.
 
 0.0200 2021-05-19 11:15:17
