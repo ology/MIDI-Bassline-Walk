@@ -1,6 +1,8 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+
+0.0106 2021-05-19 02:31:21
     - Don't drop the 5th note from a 5 chord.
     - Handle enharmonics in the matching process.
 
