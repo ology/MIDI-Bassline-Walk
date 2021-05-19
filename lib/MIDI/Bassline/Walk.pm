@@ -161,7 +161,7 @@ sub generate {
     for my $p (@pitches) {
         my $x = Music::Note->new($p, 'midinum')->format('isobase');
         if (
-            ($flavor =~ /5/ && $x eq $tones[4])
+            ($flavor =~ /[#b]5/ && $x eq $tones[4])
             ||
             ($flavor =~ /7/ && $flavor !~ /M7/ && $x eq $tones[6])
             ||
