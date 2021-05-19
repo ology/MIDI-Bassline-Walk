@@ -77,6 +77,28 @@ has octave => (
     default => sub { 2 },
 );
 
+=head2 scale
+
+  $scale = $bassline->scale;
+
+The musical scale to use.
+
+Default: C<sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' }>
+
+Alternatives:
+
+  sub { 'chromatic' }
+
+  sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' }
+
+=cut
+
+has scale => (
+    is  => 'ro',
+    isa => sub { croak 'not a code reference' unless ref $_[0] eq 'CODE' },
+    default => sub { sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' } },
+);
+
 =head2 verbose
 
   $verbose = $bassline->verbose;
@@ -100,6 +122,7 @@ has verbose => (
   $bassline = MIDI::Bassline::Walk->new(
       intervals => $intervals,
       octave    => $octave,
+      scale     => $scale,
       verbose   => $verbose,
   );
 
@@ -127,7 +150,7 @@ sub generate {
 
     print "* CHORD: $chord\n" if $self->verbose;
 
-    my $scale = $chord =~ /^[A-G][#b]?m/ ? 'minor' : 'major';
+    my $scale = $self->scale->($chord);
 
     # Parse the chord
     my $chord_note;
