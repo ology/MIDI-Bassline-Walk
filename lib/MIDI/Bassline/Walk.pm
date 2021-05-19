@@ -194,13 +194,13 @@ sub generate {
         }
         my $y = $n->format('isobase');
         if (
-            ($flavor =~ /[#b]5/ && ($x eq $tones[4] || $y eq $tones[6]))
+            ($flavor =~ /[#b]5/ && ($x eq $tones[4] || $y eq $tones[4]))
             ||
             ($flavor =~ /7/ && $flavor !~ /[Mm]7/ && ($x eq $tones[6] || $y eq $tones[6]))
             ||
-            ($flavor =~ /[#b]9/ && ($x eq $tones[1] || $y eq $tones[6]))
+            ($flavor =~ /[#b]9/ && ($x eq $tones[1] || $y eq $tones[1]))
             ||
-            ($flavor =~ /dim/ && ($x eq $tones[2] || $y eq $tones[6]))
+            ($flavor =~ /dim/ && ($x eq $tones[2] || $y eq $tones[2]))
             ||
             ($flavor =~ /dim/ && ($x eq $tones[6] || $y eq $tones[6]))
             ||
