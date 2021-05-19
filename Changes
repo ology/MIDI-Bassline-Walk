@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.0200 2021-05-19 11:15:17
     - Add the scale attribute.
