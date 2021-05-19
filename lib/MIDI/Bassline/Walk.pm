@@ -139,17 +139,19 @@ sub generate {
 
     my $cn = Music::Chord::Note->new;
 
-    my @notes = $cn->chord_with_octave($chord, $self->octave);
+    my @notes = map { Music::Note->new($_, 'ISO')->format('midinum') }
+        $cn->chord_with_octave($chord, $self->octave);
 
     my @pitches = get_scale_MIDI($chord_note, $self->octave, $scale);
 
     # Add unique chord notes to the pitches
-    my @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @pitches;
     for my $n (@notes) {
-        if (not any { $_ eq $n } @named) {
-            my $x = Music::Note->new($n, 'ISO')->format('midinum');
-            push @pitches, $x;
-            print "\tADD: $n\n" if $self->verbose;
+        if (not any { $_ == $n } @pitches) {
+            push @pitches, $n;
+            if ($self->verbose) {
+                my $x = Music::Note->new($n, 'midinum')->format('ISO');
+                print "\tADD: $x\n";
+            }
         }
     }
     @pitches = sort { $a <=> $b } @pitches; # Pitches are midi numbers
@@ -163,7 +165,7 @@ sub generate {
         if (
             ($flavor =~ /[#b]5/ && $x eq $tones[4])
             ||
-            ($flavor =~ /7/ && $flavor !~ /M7/ && $x eq $tones[6])
+            ($flavor =~ /7/ && $flavor !~ /[Mm]7/ && $x eq $tones[6])
             ||
             ($flavor =~ /[#b]9/ && $x eq $tones[1])
             ||
@@ -179,9 +181,12 @@ sub generate {
         push @fixed, $p;
     }
 
-    # Debugging:
-    @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @fixed;
-    print "\tNOTES: ",ddc(\@named) if $self->verbose;
+    # DEBUGGING:
+    my @named;
+    if ($self->verbose) {
+        @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @fixed;
+        print "\tNOTES: ",ddc(\@named);
+    }
 
     my $voice = Music::VoiceGen->new(
         pitches   => \@fixed,
@@ -195,8 +200,10 @@ sub generate {
     my @chosen = map { $voice->rand } 1 .. $num;;
 
     # Show them what they've won, Bob!
-    @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @chosen;
-    print "\tCHOSEN: ",ddc(\@named) if $self->verbose;
+    if ($self->verbose) {
+        @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @chosen;
+        print "\tCHOSEN: ",ddc(\@named);
+    }
 
     return \@chosen;
 }
