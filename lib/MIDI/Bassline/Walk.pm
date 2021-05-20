@@ -94,8 +94,9 @@ Alternatives:
   sub { '' }
 
 The first walks the chromatic scale no matter what the chord.  The
-second walks only the major or minor pentatonic scale, plus the notes
-of the chord.  The last walks only the notes of the chord (no scale).
+second walks either the major or minor pentatonic scale, plus the
+notes of the chord.  The last walks only the notes of the chord (no
+scale).
 
 =cut
 
