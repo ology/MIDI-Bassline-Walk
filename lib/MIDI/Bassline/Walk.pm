@@ -2,7 +2,7 @@ package MIDI::Bassline::Walk;
 
 # ABSTRACT: Generate walking basslines
 
-our $VERSION = '0.0203';
+our $VERSION = '0.0204';
 
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
