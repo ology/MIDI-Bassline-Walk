@@ -230,7 +230,7 @@ sub generate {
     $voice->context($fixed[int @fixed / 2]);
 
     # Choose Or Die!!
-    my @chosen = map { $voice->rand } 1 .. $num;;
+    my @chosen = map { $voice->rand } 1 .. $num;
 
     # Show them what they've won, Bob!
     if ($self->verbose) {
