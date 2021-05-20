@@ -15,8 +15,7 @@ is $obj->octave, 2, 'octave';
 
 is $obj->verbose, 1, 'verbose';
 
-$expect = 4;
 my $got = $obj->generate('C7b5', $expect);
-is scalar(@$got), $expect, 'generate';
+is scalar(@$got), 4, 'generate';
 
 done_testing();
