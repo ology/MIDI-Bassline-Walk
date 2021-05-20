@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Improve documentation.
+
+0.0204 2021-05-19 21:31:41
     - Allow an empty scale, thereby walking only the notes of the chord.
     - Improve documentation.
 
