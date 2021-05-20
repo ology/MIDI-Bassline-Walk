@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Allow an empty scale, thereby walking only the notes of the chord.
 
 0.0203 2021-05-19 12:59:18
     - Restrict note skipping to major or minor scales.
