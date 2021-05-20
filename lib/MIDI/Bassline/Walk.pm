@@ -91,6 +91,12 @@ Alternatives:
 
   sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' }
 
+  sub { '' }
+
+The first walks the chromatic scale no matter what the chord.  The
+second walks only the major or minor pentatonic scale.  The last walks
+only the notes of the chord (no scale).
+
 =cut
 
 has scale => (
