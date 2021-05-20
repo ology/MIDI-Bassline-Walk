@@ -165,7 +165,7 @@ sub generate {
     my @notes = map { Music::Note->new($_, 'ISO')->format('midinum') }
         $cn->chord_with_octave($chord, $self->octave);
 
-    my @pitches = get_scale_MIDI($chord_note, $self->octave, $scale);
+    my @pitches = $scale ? get_scale_MIDI($chord_note, $self->octave, $scale) : ();
 
     # Add unique chord notes to the pitches
     for my $n (@notes) {
