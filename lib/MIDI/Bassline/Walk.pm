@@ -36,8 +36,8 @@ minus the notes those replaced."
 
 The logic (and music theory) implemented here, can generate some sour
 notes.  This is an approximate composition tool, and not a drop-in
-bass player.  Import rendered MIDI into a DAW and alter things until
-they are suitable.
+bass player.  Import rendered MIDI into a DAW and alter notes until
+they sound suitable.
 
 The chords recognized by this module, are those known to
 L<Music::Chord::Note>.  Please see the source of that module for the
