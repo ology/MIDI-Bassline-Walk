@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Resort the guitar pitches.
+
+0.0205 2021-05-30 23:45:04
     - Improve documentation.
     - Add the "guitar" attribute to transpose-up, notes below E2.
 
