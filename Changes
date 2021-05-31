@@ -2,6 +2,7 @@ Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
     - Improve documentation slightly.
+    - Add the eg/walking program to illustrate usage.
 
 0.0206 2021-05-31 00:17:52
     - Resort the guitar pitches.
