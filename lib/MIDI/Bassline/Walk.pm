@@ -142,6 +142,7 @@ has verbose => (
 
 =head2 new
 
+  $bassline = MIDI::Bassline::Walk->new;
   $bassline = MIDI::Bassline::Walk->new(
       guitar    => $guitar,
       intervals => $intervals,
