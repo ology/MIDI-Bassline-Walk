@@ -275,6 +275,8 @@ __END__
 
 =head1 SEE ALSO
 
+The F<t/> and F<eg/> programs
+
 L<Data::Dumper::Compact>
 
 L<Carp>
