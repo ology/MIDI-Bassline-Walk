@@ -45,6 +45,22 @@ list.
 
 =head1 ATTRIBUTES
 
+=head2 guitar
+
+  $guitar = $bassline->guitar;
+
+Transpose notes below C<E2> (C<40>) up an octave.
+
+Default: C<0>
+
+=cut
+
+has guitar => (
+    is  => 'ro',
+    isa => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    default => sub { 0 },
+);
+
 =head2 intervals
 
   $verbose = $bassline->intervals;
@@ -155,7 +171,7 @@ sub generate {
     $chord ||= 'C';
     $num ||= 4;
 
-    print "* CHORD: $chord\n" if $self->verbose;
+    print "CHORD: $chord\n" if $self->verbose;
 
     my $scale = $self->scale->($chord);
 
@@ -219,6 +235,10 @@ sub generate {
             next;
         }
         push @fixed, $p;
+    }
+
+    if ($self->guitar) {
+        @fixed = map { $_ < 40 ? $_ + 12 : $_ } @fixed;
     }
 
     # DEBUGGING:
