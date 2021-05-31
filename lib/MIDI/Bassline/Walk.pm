@@ -238,7 +238,7 @@ sub generate {
     }
 
     if ($self->guitar) {
-        @fixed = map { $_ < 40 ? $_ + 12 : $_ } @fixed;
+        @fixed = sort { $a <=> $b } map { $_ < 40 ? $_ + 12 : $_ } @fixed;
     }
 
     # DEBUGGING:
