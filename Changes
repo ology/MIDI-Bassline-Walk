@@ -2,6 +2,7 @@ Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
     - Reinstate context() if the tonic attribute is set.
+    - Choose the closest pitch, if given a next-chord intersection.
 
 0.0303 2022-01-25 01:55:15
     - Clean-up code ever-so-slightly.
