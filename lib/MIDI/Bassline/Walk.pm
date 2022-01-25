@@ -279,12 +279,7 @@ sub generate {
     # Make sure there are no duplicate pitches
     @fixed = uniq @fixed;
 
-    # DEBUGGING:
-    my @named;
-    if ($self->verbose) {
-        @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @fixed;
-        print "\tNOTES: ",ddc(\@named);
-    }
+    _verbose_notes('NOTES', @fixed) if $self->verbose;
 
     my $voice = Music::VoiceGen->new(
         pitches   => \@fixed,
@@ -304,11 +299,7 @@ sub generate {
         my $A1 = Set::Array->new(@fixed);
         my $A2 = Set::Array->new(@next_pitches);
         my @intersect = @{ $A1->intersection($A2) };
-        # DEBUGGING:
-        if ($self->verbose) {
-            my @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
-            print "\tINTERSECT: ",ddc(\@named);
-        }
+        _verbose_notes('INTERSECT', @intersect) if $self->verbose;
         # Anticipate the next chord
         if (@intersect) {
             $chosen[-1] = _closest($chosen[-2], \@intersect);
@@ -316,12 +307,15 @@ sub generate {
     }
 
     # Show them what they've won, Bob!
-    if ($self->verbose) {
-        @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @chosen;
-        print "\tCHOSEN: ",ddc(\@named);
-    }
+    _verbose_notes('CHOSEN', @chosen) if $self->verbose;
 
     return \@chosen;
+}
+
+sub _verbose_notes {
+    my ($title, @notes) = @_;
+    @notes = map { Music::Note->new($_, 'midinum')->format('ISO') } @notes;
+    print "\t$title: ",ddc(\@notes);
 }
 
 # Find the closest absolute difference to the key, in the list
