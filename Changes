@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Clean-up code ever-so-slightly.
 
 0.0302 2022-01-25 01:36:42
     - Improve intersection logic.
