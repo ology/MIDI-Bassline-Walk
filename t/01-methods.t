@@ -22,4 +22,11 @@ $got = $obj->generate('C', 4, 'F');
 $got = grep { $_ eq $got->[-1] } @$expect;
 ok $got, 'intersection';
 
+$obj = new_ok 'MIDI::Bassline::Walk' => [
+    verbose => 1,
+    tonic   => 1,
+];
+$got = $obj->generate('C', 4);
+is $got->[0], '36', 'tonic';
+
 done_testing();

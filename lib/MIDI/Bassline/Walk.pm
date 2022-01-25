@@ -123,6 +123,23 @@ has scale => (
     default => sub { sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' } },
 );
 
+=head2 tonic
+
+  $tonic = $bassline->tonic;
+
+Play the first note of the scale on the first note of the generated
+phrase.
+
+Default: C<0>
+
+=cut
+
+has tonic => (
+    is      => 'ro',
+    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    default => sub { 0 },
+);
+
 =head2 verbose
 
   $verbose = $bassline->verbose;
@@ -276,6 +293,8 @@ sub generate {
 
     # Get a passage of quasi-random pitches
     my @chosen = map { $voice->rand } 1 .. $num;
+
+    $chosen[0] = $fixed[0] if $self->tonic;
 
     # Intersect with the next-chord pitches
     my @intersect;

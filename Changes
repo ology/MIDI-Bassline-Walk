@@ -2,6 +2,7 @@ Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
     - Improve intersection logic.
+    - Add a tonic attribute.
 
 0.0301 2022-01-24 16:21:53
     - Remove debugging code.
