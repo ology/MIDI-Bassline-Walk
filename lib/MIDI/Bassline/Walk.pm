@@ -309,7 +309,7 @@ sub generate {
             my @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
             print "\tINTERSECT: ",ddc(\@named);
         }
-        # Lead to the next chord
+        # Anticipate the next chord
         if (@intersect) {
             $chosen[-1] = _closest($chosen[-2], \@intersect);
         }
