@@ -315,7 +315,7 @@ sub generate {
 sub _verbose_notes {
     my ($title, @notes) = @_;
     @notes = map { Music::Note->new($_, 'midinum')->format('ISO') } @notes;
-    print "\t$title: ",ddc(\@notes);
+    print "\t$title: ", ddc(\@notes);
 }
 
 # Find the closest absolute difference to the key, in the list
