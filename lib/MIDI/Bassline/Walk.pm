@@ -332,7 +332,7 @@ sub _closest {
     my $min = min @diff;
     my @closest;
     for my $n (0 .. $#diff) {
-        next if $diff[$n] != $min || $list->[$n] == $key;
+        next if $diff[$n] != $min;
         push @closest, $list->[$n];
     }
     return $closest[int rand @closest];
