@@ -274,9 +274,6 @@ sub generate {
         intervals => $self->intervals,
     );
 
-    # Try to start in the middle of the range
-    $voice->context($fixed[int @fixed / 2]);
-
     # Get a passage of quasi-random pitches
     my @chosen = map { $voice->rand } 1 .. $num;
 
