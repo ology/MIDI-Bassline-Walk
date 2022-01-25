@@ -262,19 +262,6 @@ sub generate {
     # Make sure there are no duplicate pitches
     @fixed = uniq @fixed;
 
-    # Intersect with the next-chord pitches
-    my @intersect;
-    if ($next_chord) {
-        my $A1 = Set::Array->new(@fixed);
-        my $A2 = Set::Array->new(@next_pitches);
-        @intersect = @{ $A1->intersection($A2) };
-        # DEBUGGING:
-        if ($self->verbose) {
-            my @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
-            print "\tINTERSECT: ",ddc(\@named);
-        }
-    }
-
     # DEBUGGING:
     my @named;
     if ($self->verbose) {
@@ -293,8 +280,18 @@ sub generate {
     # Choose Or Die!!
     my @chosen = map { $voice->rand } 1 .. $num;
 
-    # Lead to the next chord
-    if (@intersect) {
+    # Intersect with the next-chord pitches
+    my @intersect;
+    if ($next_chord) {
+        my $A1 = Set::Array->new(@fixed);
+        my $A2 = Set::Array->new(@next_pitches);
+        @intersect = @{ $A1->intersection($A2) };
+        # DEBUGGING:
+        if ($self->verbose) {
+            my @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
+            print "\tINTERSECT: ",ddc(\@named);
+        }
+        # Lead to the next chord
         $chosen[-1] = $intersect[int rand @intersect];
     }
 
