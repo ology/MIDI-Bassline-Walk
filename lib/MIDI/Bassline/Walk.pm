@@ -312,6 +312,7 @@ sub generate {
     return \@chosen;
 }
 
+# Show a phrasse of midinums as ISO notes
 sub _verbose_notes {
     my ($title, @notes) = @_;
     @notes = map { Music::Note->new($_, 'midinum')->format('ISO') } @notes;
