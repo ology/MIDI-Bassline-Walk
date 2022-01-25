@@ -6,7 +6,7 @@ our $VERSION = '0.0303';
 
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
-use List::Util qw(any uniq);
+use List::Util qw(any min uniq);
 use Music::Chord::Note;
 use Music::Note;
 use Music::Scales qw(get_scale_notes get_scale_MIDI);
@@ -310,7 +310,9 @@ sub generate {
             print "\tINTERSECT: ",ddc(\@named);
         }
         # Lead to the next chord
-        $chosen[-1] = $intersect[int rand @intersect] if @intersect;
+        if (@intersect) {
+            $chosen[-1] = _closest($chosen[-2], \@intersect);
+        }
     }
 
     # Show them what they've won, Bob!
@@ -320,6 +322,20 @@ sub generate {
     }
 
     return \@chosen;
+}
+
+# Find the closest absolute difference to the key, in the list
+sub _closest {
+    my ($key, $list) = @_;
+    $list = [ grep { $_ != $key } @$list ];
+    my @diff = map { abs($key - $_) } @$list;
+    my $min = min @diff;
+    my @closest;
+    for my $n (0 .. $#diff) {
+        next if $diff[$n] != $min || $list->[$n] == $key;
+        push @closest, $list->[$n];
+    }
+    return $closest[int rand @closest];
 }
 
 1;
