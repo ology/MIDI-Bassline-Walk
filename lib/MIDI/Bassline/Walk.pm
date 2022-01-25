@@ -239,7 +239,7 @@ sub generate {
 
     # Determine if we should skip certain notes given the chord flavor
     my @tones = get_scale_notes($chord_note, $scale);
-    print "\tSCALE: ",ddc(\@tones) if $self->verbose;
+    print "\tSCALE: ", ddc(\@tones) if $self->verbose;
     my @fixed;
     for my $p (@pitches) {
         my $n = Music::Note->new($p, 'midinum');
