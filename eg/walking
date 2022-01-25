@@ -33,7 +33,7 @@ sub bass {
 }
 
 sub chords {
-    set_chan_patch($score, 1, 0);
+    set_chan_patch($score, 1, 4);
     my $cn = Music::Chord::Note->new;
     for my $chord (@chords) {
         my @notes = map { $_ . 5 } $cn->chord($chord);
