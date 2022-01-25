@@ -25,8 +25,10 @@ sub bass {
         verbose => 1,
 #        scale => sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' },
     );
-    for my $chord (@chords) {
-        my $notes = $bassline->generate($chord, 4);
+    for my $n (0 .. $#chords) {
+        my $chord = $chords[$n];
+        my $next_chord = $n < $#chords ? $chords[$n + 1] : undef;
+        my $notes = $bassline->generate($chord, 4, $next_chord);
         $score->n('qn', $_) for @$notes;
     }
 }
