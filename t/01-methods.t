@@ -17,7 +17,7 @@ is $obj->verbose, 1, 'verbose';
 my $got = $obj->generate('C7b5', 4);
 is scalar(@$got), 4, 'generate';
 
-$expect = [qw(43 45)]; # C-F note intersection
+$expect = [qw(41 43 45)]; # C-F note intersection
 $got = $obj->generate('C', 4, 'F');
 $got = grep { $_ eq $got->[-1] } @$expect;
 ok $got, 'intersection';
