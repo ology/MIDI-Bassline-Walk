@@ -2,6 +2,7 @@ Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
     - Modularize verbose note output.
+    - Clean-up code a bit.
 
 0.0304 2022-01-25 11:32:51
     - Reinstate context() if the tonic attribute is set.
