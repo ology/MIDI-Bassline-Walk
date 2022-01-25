@@ -262,7 +262,7 @@ sub generate {
     # Make sure there are no duplicate pitches
     @fixed = uniq @fixed;
 
-    # Intersect with the next chord pitches
+    # Intersect with the next-chord pitches
     my @intersect;
     if ($next_chord) {
         my $A1 = Set::Array->new(@fixed);
