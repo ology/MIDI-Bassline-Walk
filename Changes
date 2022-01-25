@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - If given a "next chord" in generate() use note intersection.
 
 0.0207 2021-05-31 01:03:17
     - Improve documentation slightly.

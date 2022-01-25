@@ -2,16 +2,17 @@ package MIDI::Bassline::Walk;
 
 # ABSTRACT: Generate walking basslines
 
-our $VERSION = '0.0207';
+our $VERSION = '0.0300';
 
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
-use List::Util qw(any);
+use List::Util qw(any uniq);
 use Music::Chord::Note;
 use Music::Note;
 use Music::Scales qw(get_scale_notes get_scale_MIDI);
 use Music::VoiceGen;
 use Moo;
+use Set::Array;
 use strictures 2;
 use namespace::clean;
 
@@ -157,25 +158,33 @@ Create a new C<MIDI::Bassline::Walk> object.
 
   $notes = $bassline->generate;
   $notes = $bassline->generate($chord, $n);
+  $notes = $bassline->generate($chord, $n, $next_chord);
 
 Generate B<n> MIDI pitch numbers given the B<chord>.
+
+If given a B<next_chord>, perform an intersection of the two scales,
+and replace the final note of the generated phrase with a note of the
+intersection, if there are notes in common.
 
 Defaults:
 
   chord: C
   n: 4
+  next_chord: undef
 
 =cut
 
 sub generate {
-    my ($self, $chord, $num) = @_;
+    my ($self, $chord, $num, $next_chord) = @_;
 
     $chord ||= 'C';
     $num ||= 4;
 
     print "CHORD: $chord\n" if $self->verbose;
+    print "NEXT: $next_chord\n" if $self->verbose && $next_chord;
 
     my $scale = $self->scale->($chord);
+    my $next_scale = defined $next_chord ? $self->scale->($next_chord) : 'major';
 
     # Parse the chord
     my $chord_note;
@@ -185,12 +194,20 @@ sub generate {
         $flavor = $2;
     }
 
+    # Parse the next chord
+    my $next_chord_note;
+    if ($next_chord && $next_chord =~ /^([A-G][#b]?).*$/) {
+        $next_chord_note = $1;
+    }
+warn __PACKAGE__,' L',__LINE__,' ',,"$next_chord_note\n" if $next_chord_note;
+
     my $cn = Music::Chord::Note->new;
 
     my @notes = map { Music::Note->new($_, 'ISO')->format('midinum') }
         $cn->chord_with_octave($chord, $self->octave);
 
     my @pitches = $scale ? get_scale_MIDI($chord_note, $self->octave, $scale) : ();
+    my @next_pitches = $next_scale ? get_scale_MIDI($next_chord_note, $self->octave, $next_scale) : ();
 
     # Add unique chord notes to the pitches
     for my $n (@notes) {
@@ -243,6 +260,23 @@ sub generate {
         @fixed = sort { $a <=> $b } map { $_ < 40 ? $_ + 12 : $_ } @fixed;
     }
 
+    # Make sure there are no duplicate pitches
+    @fixed = uniq @fixed;
+
+    # Intersect with the next chord pitches
+    my @intersect;
+    if ($next_chord) {
+        my $A1 = Set::Array->new(@fixed);
+        my $A2 = Set::Array->new(@next_pitches);
+        @intersect = @{ $A1->intersection($A2) };
+        # DEBUGGING:
+        my @named;
+        if ($self->verbose) {
+            @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
+            print "\tINTERSECT: ",ddc(\@named);
+        }
+    }
+
     # DEBUGGING:
     my @named;
     if ($self->verbose) {
@@ -260,6 +294,11 @@ sub generate {
 
     # Choose Or Die!!
     my @chosen = map { $voice->rand } 1 .. $num;
+
+    # Lead to the next chord
+    if (@intersect) {
+        $chosen[-1] = $intersect[int rand @intersect];
+    }
 
     # Show them what they've won, Bob!
     if ($self->verbose) {
