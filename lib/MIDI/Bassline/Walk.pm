@@ -2,7 +2,7 @@ package MIDI::Bassline::Walk;
 
 # ABSTRACT: Generate walking basslines
 
-our $VERSION = '0.0300';
+our $VERSION = '0.0301';
 
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
@@ -184,7 +184,7 @@ sub generate {
     print "NEXT: $next_chord\n" if $self->verbose && $next_chord;
 
     my $scale = $self->scale->($chord);
-    my $next_scale = defined $next_chord ? $self->scale->($next_chord) : 'major';
+    my $next_scale = defined $next_chord ? $self->scale->($next_chord) : '';
 
     # Parse the chord
     my $chord_note;
@@ -199,7 +199,6 @@ sub generate {
     if ($next_chord && $next_chord =~ /^([A-G][#b]?).*$/) {
         $next_chord_note = $1;
     }
-warn __PACKAGE__,' L',__LINE__,' ',,"$next_chord_note\n" if $next_chord_note;
 
     my $cn = Music::Chord::Note->new;
 

@@ -1,6 +1,10 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Remove debugging code.
+    - Do not have a next_scale without a next_chord.
+
+0.0300 2022-01-24 16:14:16
     - If given a "next chord" in generate() use note intersection.
 
 0.0207 2021-05-31 01:03:17
