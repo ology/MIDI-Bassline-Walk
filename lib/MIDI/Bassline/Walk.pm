@@ -297,11 +297,10 @@ sub generate {
     $chosen[0] = $fixed[0] if $self->tonic;
 
     # Intersect with the next-chord pitches
-    my @intersect;
     if ($next_chord) {
         my $A1 = Set::Array->new(@fixed);
         my $A2 = Set::Array->new(@next_pitches);
-        @intersect = @{ $A1->intersection($A2) };
+        my @intersect = @{ $A1->intersection($A2) };
         # DEBUGGING:
         if ($self->verbose) {
             my @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
