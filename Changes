@@ -1,6 +1,8 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+
+0.0305 2022-01-25 12:23:59
     - Modularize verbose note output.
     - Clean-up code a bit.
 
