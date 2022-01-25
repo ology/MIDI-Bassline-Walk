@@ -22,6 +22,7 @@ sub bass {
     set_chan_patch($score, 0, 35);
     my $bassline = MIDI::Bassline::Walk->new(
         verbose => 1,
+        tonic   => 1,
 #        scale => sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' },
     );
     for my $n (0 .. $#chords) {
