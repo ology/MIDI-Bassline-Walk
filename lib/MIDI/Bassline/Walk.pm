@@ -277,7 +277,7 @@ sub generate {
     # Try to start in the middle of the range
     $voice->context($fixed[int @fixed / 2]);
 
-    # Choose Or Die!!
+    # Get a passage of quasi-random pitches
     my @chosen = map { $voice->rand } 1 .. $num;
 
     # Intersect with the next-chord pitches
