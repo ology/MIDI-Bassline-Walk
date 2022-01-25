@@ -307,7 +307,7 @@ sub generate {
             print "\tINTERSECT: ",ddc(\@named);
         }
         # Lead to the next chord
-        $chosen[-1] = $intersect[int rand @intersect];
+        $chosen[-1] = $intersect[int rand @intersect] if @intersect;
     }
 
     # Show them what they've won, Bob!
