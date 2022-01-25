@@ -269,9 +269,8 @@ sub generate {
         my $A2 = Set::Array->new(@next_pitches);
         @intersect = @{ $A1->intersection($A2) };
         # DEBUGGING:
-        my @named;
         if ($self->verbose) {
-            @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
+            my @named = map { Music::Note->new($_, 'midinum')->format('ISO') } @intersect;
             print "\tINTERSECT: ",ddc(\@named);
         }
     }
