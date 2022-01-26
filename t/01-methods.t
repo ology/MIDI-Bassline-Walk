@@ -28,7 +28,7 @@ $obj = new_ok 'MIDI::Bassline::Walk' => [
     verbose => 1,
     tonic   => 1,
 ];
-$expect = [qw(36 40 43)]; # I, III, V of the C major scale
+$expect = [qw(36 40 43)]; # I,III,V of the C2 major scale
 $got = $obj->generate('C', 4);
 $got = grep { $_ eq $got->[0] } @$expect;
 ok $got, 'tonic';
