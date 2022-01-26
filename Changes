@@ -2,6 +2,7 @@ Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
     - I *think* that voice->context takes an arrayref, but I'm not sure. thrig?
+    - If tonic is set, replace the first note with the I, III, or V notes.
 
 0.0305 2022-01-25 12:23:59
     - Modularize verbose note output.
