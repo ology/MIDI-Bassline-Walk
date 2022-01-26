@@ -1,9 +1,11 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Something is wrong and the distribution is not on CPAN?
 
 0.0308 2022-01-26 10:56:19
     - Fix the description of the tonic attribute.
+    - Whoops - Incremented the version number twice. :\
 
 0.0306 2022-01-26 07:47:22
     - I *think* that voice->context takes an arrayref, but I'm not sure. thrig?
