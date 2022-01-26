@@ -1,6 +1,8 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+
+0.0308 2022-01-26 10:56:19
     - Fix the description of the tonic attribute.
 
 0.0306 2022-01-26 07:47:22
