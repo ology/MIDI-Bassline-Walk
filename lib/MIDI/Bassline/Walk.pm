@@ -2,7 +2,7 @@ package MIDI::Bassline::Walk;
 
 # ABSTRACT: Generate walking basslines
 
-our $VERSION = '0.0306';
+our $VERSION = '0.0307';
 
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
@@ -127,8 +127,8 @@ has scale => (
 
   $tonic = $bassline->tonic;
 
-Play the first note of the scale on the first note of the generated
-phrase.
+Play one of the first, third or fifth (I, III, V) notes of the scale
+on the first note of the generated phrase.
 
 Default: C<0>
 
