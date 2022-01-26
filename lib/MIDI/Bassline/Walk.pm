@@ -292,7 +292,7 @@ sub generate {
     # Get a passage of quasi-random pitches
     my @chosen = map { $voice->rand } 1 .. $num;
 
-    $chosen[0] = $fixed[0] if $self->tonic;
+    $chosen[0] = _closest($chosen[1], [ @fixed[0,2,4] ]) if $self->tonic;
 
     # Intersect with the next-chord pitches
     if ($next_chord) {
