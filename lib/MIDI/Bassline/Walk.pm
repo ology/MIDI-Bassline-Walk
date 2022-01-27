@@ -174,6 +174,7 @@ Create a new C<MIDI::Bassline::Walk> object.
 =head2 generate
 
   $notes = $bassline->generate;
+  $notes = $bassline->generate($chord);
   $notes = $bassline->generate($chord, $n);
   $notes = $bassline->generate($chord, $n, $next_chord);
 
