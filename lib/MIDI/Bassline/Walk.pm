@@ -330,14 +330,18 @@ sub _verbose_notes {
 # Find the closest absolute difference to the key, in the list
 sub _closest {
     my ($key, $list) = @_;
+    # Remove the key from the list
     $list = [ grep { $_ != $key } @$list ];
+    # Find the absolute difference
     my @diff = map { abs($key - $_) } @$list;
     my $min = min @diff;
     my @closest;
+    # Get all the minimum elements of list
     for my $n (0 .. $#diff) {
         next if $diff[$n] != $min;
         push @closest, $list->[$n];
     }
+    # Return a random minimum
     return $closest[int rand @closest];
 }
 
