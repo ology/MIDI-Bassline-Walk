@@ -286,8 +286,8 @@ sub generate {
         intervals => $self->intervals,
     );
 
-    # Try to start the phrase at the beginning of the scale
-    $voice->context([$fixed[0]]) if $self->tonic;
+    # Try to start the phrase in the middle of the scale
+    $voice->context($fixed[int @fixed / 2]);
 
     # Get a passage of quasi-random pitches
     my @chosen = map { $voice->rand } 1 .. $num;
