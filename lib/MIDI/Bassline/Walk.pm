@@ -310,7 +310,9 @@ sub generate {
         _verbose_notes('INTERSECT', @intersect) if $self->verbose;
         # Anticipate the next chord
         if (@intersect) {
-            $chosen[-1] = _closest($chosen[-2], \@intersect);
+            if (my $closest = _closest($chosen[-2], \@intersect)) {
+                $chosen[-1] = $closest;
+            }
         }
     }
 
@@ -332,6 +334,7 @@ sub _closest {
     my ($key, $list) = @_;
     # Remove the key from the list
     $list = [ grep { $_ != $key } @$list ];
+    return undef unless @$list;
     # Find the absolute difference
     my @diff = map { abs($key - $_) } @$list;
     my $min = min @diff;
