@@ -1,7 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
-    - Fix-up code a bit...
+    - Fix-up the "closest element" logic.
 
 0.0310 2022-01-26 20:34:30
     - Reinstate the mid-scale voice->context.
