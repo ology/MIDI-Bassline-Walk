@@ -32,8 +32,8 @@ use namespace::clean;
 C<MIDI::Bassline::Walk> generates randomized, walking basslines.
 
 The "formula" implemented by this module is basically, "play any notes
-of the chord-root scale, plus the notes of the chord that may differ,
-minus the notes those replaced."
+of the chord, or chord-root scale, plus the notes of the chord that
+may differ, minus the notes those replaced."
 
 The logic (and music theory) implemented here, can generate some sour
 notes.  This is an approximate composition tool, and not a drop-in
