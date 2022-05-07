@@ -56,8 +56,8 @@ Default: C<0>
 =cut
 
 has guitar => (
-    is  => 'ro',
-    isa => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    is      => 'ro',
+    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
     default => sub { 0 },
 );
 
@@ -72,8 +72,8 @@ Default: C<-3 -2 -1 1 2 3>
 =cut
 
 has intervals => (
-    is  => 'ro',
-    isa => sub { croak 'not an array reference' unless ref $_[0] eq 'ARRAY' },
+    is      => 'ro',
+    isa     => sub { croak 'not an array reference' unless ref $_[0] eq 'ARRAY' },
     default => sub { [qw(-3 -2 -1 1 2 3)] },
 );
 
@@ -88,8 +88,8 @@ Default: C<2>
 =cut
 
 has octave => (
-    is  => 'ro',
-    isa => sub { croak 'not a positive integer' unless $_[0] =~ /^\d+$/ },
+    is      => 'ro',
+    isa     => sub { croak 'not a positive integer' unless $_[0] =~ /^\d+$/ },
     default => sub { 2 },
 );
 
@@ -117,8 +117,8 @@ scale).
 =cut
 
 has scale => (
-    is  => 'ro',
-    isa => sub { croak 'not a code reference' unless ref $_[0] eq 'CODE' },
+    is      => 'ro',
+    isa     => sub { croak 'not a code reference' unless ref $_[0] eq 'CODE' },
     default => sub { sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' } },
 );
 
@@ -150,8 +150,8 @@ Default: C<0>
 =cut
 
 has verbose => (
-    is  => 'ro',
-    isa => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    is      => 'ro',
+    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
     default => sub { 0 },
 );
 
@@ -195,7 +195,7 @@ sub generate {
     my ($self, $chord, $num, $next_chord) = @_;
 
     $chord ||= 'C';
-    $num ||= 4;
+    $num   ||= 4;
 
     print "CHORD: $chord\n" if $self->verbose;
     print "NEXT: $next_chord\n" if $self->verbose && $next_chord;
