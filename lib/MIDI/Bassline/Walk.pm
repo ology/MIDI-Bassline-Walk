@@ -244,6 +244,7 @@ sub generate {
     for my $p (@pitches) {
         my $n = Music::Note->new($p, 'midinum');
         my $x = $n->format('isobase');
+        # TODO Why?
         if ($x =~ /#/) {
             $n->en_eq('flat');
         }
