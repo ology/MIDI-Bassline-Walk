@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.0311 2022-01-26 21:50:58
     - Fix-up the "closest element" logic.
