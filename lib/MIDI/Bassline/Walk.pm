@@ -16,6 +16,8 @@ use Set::Array;
 use strictures 2;
 use namespace::clean;
 
+with('Music::PitchNum');
+
 =head1 SYNOPSIS
 
   use MIDI::Bassline::Walk;
@@ -219,7 +221,7 @@ sub generate {
 
     my $cn = Music::Chord::Note->new;
 
-    my @notes = map { Music::Note->new($_, 'ISO')->format('midinum') }
+    my @notes = map { $self->pitchnum($_) }
         $cn->chord_with_octave($chord, $self->octave);
 
     my @pitches = $scale ? get_scale_MIDI($chord_note, $self->octave, $scale) : ();
@@ -230,7 +232,7 @@ sub generate {
         if (not any { $_ == $n } @pitches) {
             push @pitches, $n;
             if ($self->verbose) {
-                my $x = Music::Note->new($n, 'midinum')->format('ISO');
+                my $x = $self->pitchname($n);
                 print "\tADD: $x\n";
             }
         }
@@ -280,7 +282,7 @@ sub generate {
     # Make sure there are no duplicate pitches
     @fixed = uniq @fixed;
 
-    _verbose_notes('NOTES', @fixed) if $self->verbose;
+    $self->_verbose_notes('NOTES', @fixed) if $self->verbose;
 
     my $voice = Music::VoiceGen->new(
         pitches   => \@fixed,
@@ -307,7 +309,7 @@ sub generate {
         my $A1 = Set::Array->new(@fixed);
         my $A2 = Set::Array->new(@next_pitches);
         my @intersect = @{ $A1->intersection($A2) };
-        _verbose_notes('INTERSECT', @intersect) if $self->verbose;
+        $self->_verbose_notes('INTERSECT', @intersect) if $self->verbose;
         # Anticipate the next chord
         if (@intersect) {
             if (my $closest = _closest($chosen[-2], \@intersect)) {
@@ -317,15 +319,15 @@ sub generate {
     }
 
     # Show them what they've won, Bob!
-    _verbose_notes('CHOSEN', @chosen) if $self->verbose;
+    $self->_verbose_notes('CHOSEN', @chosen) if $self->verbose;
 
     return \@chosen;
 }
 
 # Show a phrase of midinums as ISO notes
 sub _verbose_notes {
-    my ($title, @notes) = @_;
-    @notes = map { Music::Note->new($_, 'midinum')->format('ISO') } @notes;
+    my ($self, $title, @notes) = @_;
+    @notes = map { $self->pitchname($_) } @notes;
     print "\t$title: ", ddc(\@notes);
 }
 
