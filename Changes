@@ -1,6 +1,8 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+
+0.0312 2022-06-16 20:10:09
     - Improve documentation.
     - Use Music::PitchNum instead of doing Music::Note gymnastics.
 
