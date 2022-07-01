@@ -42,7 +42,7 @@ $obj = new_ok 'MIDI::Bassline::Walk' => [
     modal   => 1,
 ];
 $expect = 46; # = A#2
-$got = $obj->generate('Dm7', 99);
+$got = $obj->generate('Dm7', 99); # An A# would surely turn up in 99 rolls! Right? Uhh...
 $got = grep { $_ == $expect } @$got;
 ok !$got, 'modal';
 
