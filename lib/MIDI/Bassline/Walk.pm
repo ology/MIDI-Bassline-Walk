@@ -25,7 +25,6 @@ with('Music::PitchNum');
   my $bassline = MIDI::Bassline::Walk->new(verbose => 1);
 
   my $notes = $bassline->generate('C7b5', 8);
-
   # MIDI:
   # $score->n('qn', $_) for @$notes;
 
@@ -52,6 +51,22 @@ list.
   $guitar = $bassline->guitar;
 
 Transpose notes below C<E2> (C<40>) up an octave.
+
+Default: C<0>
+
+=cut
+
+has guitar => (
+    is      => 'ro',
+    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    default => sub { 0 },
+);
+
+=head2 modal
+
+  $modal = $bassline->modal;
+
+Maintain the key-center and only choose notes within a mode.
 
 Default: C<0>
 
