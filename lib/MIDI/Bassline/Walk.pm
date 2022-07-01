@@ -256,8 +256,10 @@ sub generate {
         my @key_notes = get_scale_notes($self->keycenter, $modes[0]);
         my $position = first_index { $_ eq $chord_note } @key_notes;
         $scale = $position >= 0 ? $modes[$position] : $modes[0];
-        $position = first_index { $_ eq $next_chord_note } @key_notes;
-        $next_scale = $position >= 0 ? $modes[$position] : $modes[0];
+        if ($next_chord_note) {
+            $position = first_index { $_ eq $next_chord_note } @key_notes;
+            $next_scale = $position >= 0 ? $modes[$position] : $modes[0];
+        }
     }
     else {
         $scale = $self->scale->($chord);
