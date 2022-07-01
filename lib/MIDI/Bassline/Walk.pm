@@ -219,6 +219,11 @@ If given a B<next_chord>, perform an intersection of the two scales,
 and replace the final note of the generated phrase with a note of the
 intersection, if there are notes in common.
 
+If the B<modal> attribute is set, then the chosen notes will be within
+the modal scale given the B<keycenter> setting.  If it is not set (the
+default), notes will be chosen as if the key has changed to the
+current chord!
+
 Defaults:
 
   chord: C
