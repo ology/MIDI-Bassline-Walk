@@ -98,6 +98,7 @@ has octave => (
 =head2 scale
 
   $scale = $bassline->scale;
+  $scale = $bassline->scale($chord);
 
 The musical scale to use, based on a given chord (i.e. C<$_[0]> here).
 
