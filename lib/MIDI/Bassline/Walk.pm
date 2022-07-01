@@ -65,7 +65,7 @@ has guitar => (
 
 =head2 intervals
 
-  $verbose = $bassline->intervals;
+  $intervals = $bassline->intervals;
 
 Allowed intervals passed to L<Music::VoiceGen>.
 
