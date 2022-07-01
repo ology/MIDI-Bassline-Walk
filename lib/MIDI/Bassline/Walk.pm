@@ -371,7 +371,7 @@ sub generate {
         $self->_verbose_notes('INTERSECT', @intersect) if $self->verbose;
         # Anticipate the next chord
         if (@intersect) {
-            if (my $closest = _closest($chosen[-2], \@intersect)) {
+            if (my $closest = _closest($chosen[-2] || $chosen[-1], \@intersect)) {
                 $chosen[-1] = $closest;
             }
         }
