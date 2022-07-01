@@ -14,14 +14,14 @@ is $obj->octave, 2, 'octave';
 is $obj->verbose, 1, 'verbose';
 is ref $obj->scale, 'CODE', 'scale';
 
+my $got = $obj->scale->('C7b5');
+is $got, 'major', 'scale';
+
 my $expect = [qw(-3 -2 -1 1 2 3)];
 is_deeply $obj->intervals, $expect, 'intervals';
 
-my $got = $obj->generate('C7b5', 4);
+$got = $obj->generate('C7b5', 4);
 is scalar(@$got), 4, 'generate';
-
-$got = $obj->scale->('C7b5');
-is $got, 'major', 'scale';
 
 $expect = [qw(41 43 45)]; # C-F note intersection
 $got = $obj->generate('C', 4, 'F');
