@@ -252,6 +252,7 @@ sub generate {
 
     my ($scale, $next_scale);
     if ($self->modal) {
+        print "MODAL\n" if $self->verbose;
         my @modes = qw( ionian dorian phrygian lydian mixolydian aeolian locrian );
         my @key_notes = get_scale_notes($self->keycenter, $modes[0]);
         my $position = first_index { $_ eq $chord_note } @key_notes;
