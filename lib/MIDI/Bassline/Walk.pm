@@ -72,10 +72,26 @@ Default: C<0>
 
 =cut
 
-has guitar => (
+has modal => (
     is      => 'ro',
     isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
     default => sub { 0 },
+);
+
+=head2 keycenter
+
+  $keycenter = $bassline->keycenter;
+
+The key-center for B<modal> accompaniment.
+
+Default: C<C>
+
+=cut
+
+has keycenter => (
+    is      => 'ro',
+    isa     => sub { croak 'not a valid key' unless $_[0] =~ /^[A-G][#b]?$/ },
+    default => sub { 'C' },
 );
 
 =head2 intervals
@@ -182,6 +198,8 @@ has verbose => (
       intervals => $intervals,
       octave    => $octave,
       scale     => $scale,
+      modal     => $modal,
+      keycenter => $key_center,
       verbose   => $verbose,
   );
 
