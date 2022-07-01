@@ -37,4 +37,13 @@ $got = $obj->generate('C', 4);
 $got = grep { $_ eq $got->[0] } @$expect;
 ok $got, 'tonic';
 
+$obj = new_ok 'MIDI::Bassline::Walk' => [
+    verbose => 1,
+    modal   => 1,
+];
+$expect = 46; # = A#2
+$got = $obj->generate('Dm7', 99);
+$got = grep { $_ == $expect } @$got;
+ok !$got, 'modal';
+
 done_testing();
