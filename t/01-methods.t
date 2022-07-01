@@ -46,4 +46,12 @@ $got = $obj->generate('Dm7', 99); # An A# would surely turn up in 99 rolls! Righ
 $got = grep { $_ == $expect } @$got;
 ok !$got, 'modal';
 
+#$obj = MIDI::Bassline::Walk->new(
+#    verbose   => 1,
+#    guitar    => 1,
+#    modal     => 1,
+#    keycenter => 'Bb',
+#);
+#$got = $obj->generate('F7', 4);
+
 done_testing();
