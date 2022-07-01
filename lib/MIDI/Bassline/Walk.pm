@@ -6,6 +6,7 @@ our $VERSION = '0.0312';
 
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
+use List::MoreUtils qw(first_index);
 use List::Util qw(any min uniq);
 use Music::Chord::Note;
 use Music::Note;
@@ -235,9 +236,6 @@ sub generate {
     print "CHORD: $chord\n" if $self->verbose;
     print "NEXT: $next_chord\n" if $self->verbose && $next_chord;
 
-    my $scale = $self->scale->($chord);
-    my $next_scale = defined $next_chord ? $self->scale->($next_chord) : '';
-
     # Parse the chord
     my $chord_note;
     my $flavor;
@@ -250,6 +248,20 @@ sub generate {
     my $next_chord_note;
     if ($next_chord && $next_chord =~ /^([A-G][#b]?).*$/) {
         $next_chord_note = $1;
+    }
+
+    my ($scale, $next_scale);
+    if ($self->modal) {
+        my @modes = qw( ionian dorian phrygian lydian mixolydian aeolian locrian );
+        my @key_notes = get_scale_notes($self->keycenter, $modes[0]);
+        my $position = first_index { $_ eq $chord_note } @key_notes;
+        $scale = $position >= 0 ? $modes[$position] : $modes[0];
+        $position = first_index { $_ eq $next_chord_note } @key_notes;
+        $next_scale = $position >= 0 ? $modes[$position] : $modes[0];
+    }
+    else {
+        $scale = $self->scale->($chord);
+        $next_scale = defined $next_chord ? $self->scale->($next_chord) : '';
     }
 
     my $cn = Music::Chord::Note->new;
@@ -287,7 +299,7 @@ sub generate {
             $n->en_eq('sharp');
         }
         my $y = $n->format('isobase');
-        if (($scale eq 'major' || $scale eq 'minor')
+        if (($scale eq 'major' || $scale eq 'ionian' || $scale eq 'minor' || $scale eq 'aeolian')
             && (
             ($flavor =~ /[#b]5/ && ($x eq $tones[4] || $y eq $tones[4]))
             ||
