@@ -25,7 +25,13 @@ with('Music::PitchNum');
 
   my $bassline = MIDI::Bassline::Walk->new(verbose => 1);
 
-  my $notes = $bassline->generate('C7b5', 8);
+  $bassline = MIDI::Bassline::Walk->new(
+    guitar    => 1,
+    modal     => 1,
+    keycenter => 'Bb',
+  );
+
+  my $notes = $bassline->generate('F7b5', 8);
   # MIDI:
   # $score->n('qn', $_) for @$notes;
 
