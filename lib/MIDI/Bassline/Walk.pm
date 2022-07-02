@@ -107,7 +107,7 @@ has keycenter => (
 
 Allowed intervals passed to L<Music::VoiceGen>.
 
-Default: C<-3 -2 -1 1 2 3>
+Default: C<[ -3 -2 -1 1 2 3 ]>
 
 =cut
 
