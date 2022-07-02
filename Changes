@@ -2,6 +2,7 @@ Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
     - Improve tests slightly.
+    - Add the eg/solitude program.
 
 0.0401 2022-07-02 00:11:29
     - Optionally toggle inclusion of non-scale chord notes in the choices.
