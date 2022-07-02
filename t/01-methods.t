@@ -71,9 +71,19 @@ subtest generate => sub {
         modal   => 1,
     ];
     $expect = 46; # = A#2
-    $got = $obj->generate('Dm7', 99); # An A# would surely turn up in 99 rolls! Right? Uhh...
-    $got = grep { $_ == $expect } @$got;
-    ok !$got, 'modal';
+    $got = $obj->generate('Dm7', 99); # An A# would surely not turn up in 99 rolls! Right? Uhh...
+    $got = grep { $_ != $expect } @$got;
+    ok $got, 'modal';
+
+    $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose     => 1,
+        modal       => 1,
+        chord_notes => 0,
+    ];
+    $expect = 44; # = G#2
+    $got = $obj->generate('Dm7b5', 99); # A G# would surely not...
+    $got = grep { $_ != $expect } @$got;
+    ok $got, 'chord_notes';
 
     #$obj = MIDI::Bassline::Walk->new(
     #    verbose   => 1,
