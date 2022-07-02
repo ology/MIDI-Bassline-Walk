@@ -3,8 +3,30 @@ use strict;
 use warnings;
 
 use Test::More;
+use Test::Exception;
 
 use_ok 'MIDI::Bassline::Walk';
+
+subtest throws => sub {
+    throws_ok { MIDI::Bassline::Walk->new(guitar => 'foo') }
+        qr/not a boolean/, 'bogus guitar';
+    throws_ok { MIDI::Bassline::Walk->new(modal => 'foo') }
+        qr/not a boolean/, 'bogus modal';
+    throws_ok { MIDI::Bassline::Walk->new(chord_notes => 'foo') }
+        qr/not a boolean/, 'bogus chord_notes';
+    throws_ok { MIDI::Bassline::Walk->new(tonic => 'foo') }
+        qr/not a boolean/, 'bogus tonic';
+    throws_ok { MIDI::Bassline::Walk->new(verbose => 'foo') }
+        qr/not a boolean/, 'bogus verbose';
+    throws_ok { MIDI::Bassline::Walk->new(keycenter => 'foo') }
+        qr/not a valid key/, 'bogus keycenter';
+    throws_ok { MIDI::Bassline::Walk->new(intervals => 'foo') }
+        qr/not an array reference/, 'bogus intervals';
+    throws_ok { MIDI::Bassline::Walk->new(octave => 'foo') }
+        qr/not a positive integer/, 'bogus octave';
+    throws_ok { MIDI::Bassline::Walk->new(scale => 'foo') }
+        qr/not a code reference/, 'bogus scale';
+};
 
 my $obj = new_ok 'MIDI::Bassline::Walk' => [
     verbose => 1,
