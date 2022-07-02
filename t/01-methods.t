@@ -28,52 +28,60 @@ subtest throws => sub {
         qr/not a code reference/, 'bogus scale';
 };
 
-my $obj = new_ok 'MIDI::Bassline::Walk' => [
-    verbose => 1,
-];
+subtest attrs => sub {
+    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose => 1,
+    ];
 
-is $obj->octave, 2, 'octave';
-is $obj->verbose, 1, 'verbose';
-is ref $obj->scale, 'CODE', 'scale';
+    is $obj->octave, 2, 'octave';
+    is $obj->verbose, 1, 'verbose';
+    is ref $obj->scale, 'CODE', 'scale';
 
-my $got = $obj->scale->('C7b5');
-is $got, 'major', 'scale';
+    my $got = $obj->scale->('C7b5');
+    is $got, 'major', 'scale';
 
-my $expect = [qw(-3 -2 -1 1 2 3)];
-is_deeply $obj->intervals, $expect, 'intervals';
+    my $expect = [qw(-3 -2 -1 1 2 3)];
+    is_deeply $obj->intervals, $expect, 'intervals';
+};
 
-$got = $obj->generate('C7b5', 4);
-is scalar(@$got), 4, 'generate';
+subtest generate => sub {
+    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose => 1,
+    ];
 
-$expect = [qw(41 43 45)]; # C-F note intersection
-$got = $obj->generate('C', 4, 'F');
-$got = grep { $_ eq $got->[-1] } @$expect;
-ok $got, 'intersection';
+    my $got = $obj->generate('C7b5', 4);
+    is scalar(@$got), 4, 'generate';
 
-$obj = new_ok 'MIDI::Bassline::Walk' => [
-    verbose => 1,
-    tonic   => 1,
-];
-$expect = [qw(36 40 43)]; # I,III,V of the C2 major scale
-$got = $obj->generate('C', 4);
-$got = grep { $_ eq $got->[0] } @$expect;
-ok $got, 'tonic';
+    my $expect = [qw(41 43 45)]; # C-F note intersection
+    $got = $obj->generate('C', 4, 'F');
+    $got = grep { $_ eq $got->[-1] } @$expect;
+    ok $got, 'intersection';
 
-$obj = new_ok 'MIDI::Bassline::Walk' => [
-    verbose => 1,
-    modal   => 1,
-];
-$expect = 46; # = A#2
-$got = $obj->generate('Dm7', 99); # An A# would surely turn up in 99 rolls! Right? Uhh...
-$got = grep { $_ == $expect } @$got;
-ok !$got, 'modal';
+    $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose => 1,
+        tonic   => 1,
+    ];
+    $expect = [qw(36 40 43)]; # I,III,V of the C2 major scale
+    $got = $obj->generate('C', 4);
+    $got = grep { $_ eq $got->[0] } @$expect;
+    ok $got, 'tonic';
 
-#$obj = MIDI::Bassline::Walk->new(
-#    verbose   => 1,
-#    guitar    => 1,
-#    modal     => 1,
-#    keycenter => 'Bb',
-#);
-#$got = $obj->generate('F7', 4);
+    $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose => 1,
+        modal   => 1,
+    ];
+    $expect = 46; # = A#2
+    $got = $obj->generate('Dm7', 99); # An A# would surely turn up in 99 rolls! Right? Uhh...
+    $got = grep { $_ == $expect } @$got;
+    ok !$got, 'modal';
+
+    #$obj = MIDI::Bassline::Walk->new(
+    #    verbose   => 1,
+    #    guitar    => 1,
+    #    modal     => 1,
+    #    keycenter => 'Bb',
+    #);
+    #$got = $obj->generate('F7', 4);
+};
 
 done_testing();
