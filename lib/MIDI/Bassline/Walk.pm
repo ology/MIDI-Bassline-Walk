@@ -85,6 +85,22 @@ has modal => (
     default => sub { 0 },
 );
 
+=head2 chord_notes
+
+  $chord_notes = $bassline->chord_notes;
+
+Use unique chord notes (outside the scale) for note choices.
+
+Default: C<1>
+
+=cut
+
+has chord_notes => (
+    is      => 'ro',
+    isa     => \&_boolean,
+    default => sub { 1 },
+);
+
 =head2 keycenter
 
   $keycenter = $bassline->keycenter;
@@ -206,13 +222,14 @@ sub _boolean {
 
   $bassline = MIDI::Bassline::Walk->new;
   $bassline = MIDI::Bassline::Walk->new(
-      guitar    => $guitar,
-      intervals => $intervals,
-      octave    => $octave,
-      scale     => $scale,
-      modal     => $modal,
-      keycenter => $key_center,
-      verbose   => $verbose,
+      guitar      => $guitar,
+      intervals   => $intervals,
+      octave      => $octave,
+      scale       => $scale,
+      chord_notes => $chord_notes,
+      modal       => $modal,
+      keycenter   => $key_center,
+      verbose     => $verbose,
   );
 
 Create a new C<MIDI::Bassline::Walk> object.
@@ -292,12 +309,15 @@ sub generate {
     my @next_pitches = $next_scale ? get_scale_MIDI($next_chord_note, $self->octave, $next_scale) : ();
 
     # Add unique chord notes to the pitches
-    for my $n (@notes) {
-        if (not any { $_ == $n } @pitches) {
-            push @pitches, $n;
-            if ($self->verbose) {
-                my $x = $self->pitchname($n);
-                print "\tADD: $x\n";
+    if ($self->chord_notes) {
+        print "CHORD NOTES\n" if $self->verbose;
+        for my $n (@notes) {
+            if (not any { $_ == $n } @pitches) {
+                push @pitches, $n;
+                if ($self->verbose) {
+                    my $x = $self->pitchname($n);
+                    print "\tADD: $x\n";
+                }
             }
         }
     }
