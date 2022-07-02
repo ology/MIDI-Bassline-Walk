@@ -65,7 +65,7 @@ Default: C<0>
 
 has guitar => (
     is      => 'ro',
-    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    isa     => \&_boolean,
     default => sub { 0 },
 );
 
@@ -81,7 +81,7 @@ Default: C<0>
 
 has modal => (
     is      => 'ro',
-    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    isa     => \&_boolean,
     default => sub { 0 },
 );
 
@@ -175,7 +175,7 @@ Default: C<0>
 
 has tonic => (
     is      => 'ro',
-    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    isa     => \&_boolean,
     default => sub { 0 },
 );
 
@@ -191,9 +191,14 @@ Default: C<0>
 
 has verbose => (
     is      => 'ro',
-    isa     => sub { croak 'not a boolean' unless $_[0] =~ /^[01]$/ },
+    isa     => \&_boolean,
     default => sub { 0 },
 );
+
+sub _boolean {
+    my ($arg) = @_;
+    croak 'not a boolean' unless $arg =~ /^[01]$/;
+}
 
 =head1 METHODS
 
