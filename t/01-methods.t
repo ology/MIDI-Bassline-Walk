@@ -41,6 +41,8 @@ subtest attrs => sub {
     is ref $obj->scale, 'CODE', 'scale';
     my $got = $obj->scale->('C7b5');
     is $got, 'major', 'scale';
+    $got = $obj->scale->('Dm7b5');
+    is $got, 'minor', 'scale';
 
     my $expect = [qw(-3 -2 -1 1 2 3)];
     is_deeply $obj->intervals, $expect, 'intervals';
