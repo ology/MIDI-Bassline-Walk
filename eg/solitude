@@ -263,7 +263,7 @@ sub bass {
 }
 
 sub _walk {
-    my ($modal, $chord, $n, $next) = @_;
-    my $notes = $modal->generate($chord, $n, $next);
+    my ($bass, $chord, $n, $next) = @_;
+    my $notes = $bass->generate($chord, $n, $next);
     $d->note('qn', $_) for @$notes;
 }
