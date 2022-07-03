@@ -51,8 +51,10 @@ sub drums {
 sub chords {
     set_chan_patch($d->score, $channel++, $chord_patch);
 
-    # (Local voicing file used on the author's machine.)
-    my $mcg = MIDI::Chord::Guitar->new(voicing_file => "$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv");
+    my $mcg = MIDI::Chord::Guitar->new(
+        # local author file:
+        voicing_file => "$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv"
+    );
 
     my $Dfmaj7  = $mcg->transform('Db3', 'maj7', 1);
     my $Bfm7    = $mcg->transform('Bb2', 'm7',   2);
