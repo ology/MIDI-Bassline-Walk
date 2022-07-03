@@ -382,11 +382,11 @@ sub generate {
     my @chosen = map { $voice->rand } 1 .. $num;
 
     if ($self->tonic) {
-        if ($scale eq 'major' || $scale eq 'minor') {
-            $chosen[0] = _closest($chosen[1], [ @fixed[0,2,4] ])
-        }
-        elsif ($scale eq 'pentatonic' || $scale eq 'pminor') {
+        if ($scale eq 'pentatonic' || $scale eq 'pminor') {
             $chosen[0] = _closest($chosen[1], [ @fixed[0,1,2] ])
+        }
+        elsif (@fixed == 7) { # standard, 7-note Western scale
+            $chosen[0] = _closest($chosen[1], [ @fixed[0,2,4] ])
         }
     }
 
