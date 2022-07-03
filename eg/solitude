@@ -264,6 +264,9 @@ sub bass {
     _walk($modal,  'Ebm7',   2, 'Ab7');
     _walk($modal,  'Ab7',    4, 'DbM7');
     _walk($modal,  'DbM7',   4);
+
+    $d->note('wn', 'Df3');
+    $d->note('wn', 'Df3');
 }
 
 sub _walk {
