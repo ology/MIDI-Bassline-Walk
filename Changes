@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Use the List::SomeUtils module.
+
+0.0404 2022-07-03 08:14:01
     - Fix variable naming in eg/.
     - Improve documentation slightly.
 
