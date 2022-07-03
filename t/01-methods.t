@@ -38,8 +38,9 @@ subtest attrs => sub {
 
     is $obj->octave, 2, 'octave';
 
-    is ref $obj->scale, 'CODE', 'scale';
-    my $got = $obj->scale->('C7b5');
+    my $got = ref $obj->scale;
+    is $got, 'CODE', 'scale';
+    $got = $obj->scale->('C7b5');
     is $got, 'major', 'scale';
     $got = $obj->scale->('Dm7b5');
     is $got, 'minor', 'scale';
