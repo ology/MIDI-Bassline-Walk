@@ -171,8 +171,8 @@ Alternatives:
 
 The first walks the chromatic scale no matter what the chord.  The
 second walks either the major or minor pentatonic scale, plus the
-notes of the chord.  The last walks only the notes of the chord (no
-scale).
+notes of the chord (unless the B<chord_notes> attribute is set to
+C<0>).  The last walks only the notes of the chord (no scale).
 
 =cut
 
