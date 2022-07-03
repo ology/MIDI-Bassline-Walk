@@ -6,11 +6,17 @@
 use strict;
 use warnings;
 
+# local author directories:
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Bassline-Walk MIDI-Chord-Guitar Music-Duration MIDI-Drummer-Tiny MIDI-Util);
+
 use MIDI::Bassline::Walk;
 use MIDI::Drummer::Tiny;
 use MIDI::Chord::Guitar;
 use MIDI::Util qw(set_chan_patch);
+
+# local author file:
+use constant VOICINGS => "$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv";
+# => undef; # for an installed MIDI::Chord::Guitar
 
 my $bpm          = 70;
 my $chord_patch  = 4;
@@ -51,10 +57,7 @@ sub drums {
 sub chords {
     set_chan_patch($d->score, $channel++, $chord_patch);
 
-    my $mcg = MIDI::Chord::Guitar->new(
-        # local author file:
-        voicing_file => "$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv"
-    );
+    my $mcg = MIDI::Chord::Guitar->new(voicing_file => VOICINGS);
 
     my $Dfmaj7  = $mcg->transform('Db3', 'maj7', 1);
     my $Bfm7    = $mcg->transform('Bb2', 'm7',   2);
