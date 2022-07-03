@@ -38,15 +38,15 @@ subtest attrs => sub {
 
     is $obj->octave, 2, 'octave';
 
+    my $expect = [qw(-3 -2 -1 1 2 3)];
+    is_deeply $obj->intervals, $expect, 'intervals';
+
     my $got = ref $obj->scale;
     is $got, 'CODE', 'scale';
     $got = $obj->scale->('C7b5');
     is $got, 'major', 'scale';
     $got = $obj->scale->('Dm7b5');
     is $got, 'minor', 'scale';
-
-    my $expect = [qw(-3 -2 -1 1 2 3)];
-    is_deeply $obj->intervals, $expect, 'intervals';
 
     #$obj = new_ok 'MIDI::Bassline::Walk' => [
     #    verbose => VERBOSE,
