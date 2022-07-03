@@ -5,7 +5,8 @@ use warnings;
 use Test::More;
 use Test::Exception;
 
-use constant BOGUS => 'foo';
+use constant BOGUS   => 'foo';
+use constant VERBOSE => 0;
 
 use_ok 'MIDI::Bassline::Walk';
 
@@ -32,11 +33,10 @@ subtest throws => sub {
 
 subtest attrs => sub {
     my $obj = new_ok 'MIDI::Bassline::Walk' => [
-        verbose => 1,
+        verbose => VERBOSE,
     ];
 
     is $obj->octave, 2, 'octave';
-    is $obj->verbose, 1, 'verbose';
     is ref $obj->scale, 'CODE', 'scale';
 
     my $got = $obj->scale->('C7b5');
@@ -46,7 +46,7 @@ subtest attrs => sub {
     is_deeply $obj->intervals, $expect, 'intervals';
 
     #$obj = new_ok 'MIDI::Bassline::Walk' => [
-    #    verbose => 1,
+    #    verbose => VERBOSE,
     #    modal   => 1,
     #];
     #my $got = $obj->scale->('Dm7b5');
@@ -55,7 +55,7 @@ subtest attrs => sub {
 
 subtest generate => sub {
     my $obj = new_ok 'MIDI::Bassline::Walk' => [
-        verbose => 1,
+        verbose => VERBOSE,
     ];
 
     my $got = $obj->generate('C7b5', 4);
@@ -67,7 +67,7 @@ subtest generate => sub {
     ok $got, 'intersection';
 
     $obj = new_ok 'MIDI::Bassline::Walk' => [
-        verbose => 1,
+        verbose => VERBOSE,
         tonic   => 1,
     ];
     $expect = [qw(36 40 43)]; # I,III,V of the C2 major scale
@@ -76,7 +76,7 @@ subtest generate => sub {
     ok $got, 'tonic';
 
     $obj = new_ok 'MIDI::Bassline::Walk' => [
-        verbose => 1,
+        verbose => VERBOSE,
         modal   => 1,
     ];
     $expect = 46; # = A#2
@@ -85,7 +85,7 @@ subtest generate => sub {
     ok $got, 'modal';
 
     $obj = new_ok 'MIDI::Bassline::Walk' => [
-        verbose     => 1,
+        verbose     => VERBOSE,
         modal       => 1,
         chord_notes => 0,
     ];
@@ -95,7 +95,7 @@ subtest generate => sub {
     ok $got, 'chord_notes';
 
     #$obj = MIDI::Bassline::Walk->new(
-    #    verbose   => 1,
+    #    verbose   => VERBOSE,
     #    guitar    => 1,
     #    modal     => 1,
     #    keycenter => 'Bb',
