@@ -157,7 +157,9 @@ has octave => (
 
 The musical scale to use, based on a given chord (i.e. C<$_[0]> here).
 
-Default if not B<modal>: C<sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' }>
+Default if not B<modal>:
+
+  sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' }
 
 Alternatives:
 
