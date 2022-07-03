@@ -339,8 +339,7 @@ sub generate {
             $n->en_eq('sharp');
         }
         my $y = $n->format('isobase');
-        if (($scale eq 'major' || $scale eq 'ionian' || $scale eq 'minor' || $scale eq 'aeolian')
-            && (
+        if (
             ($flavor =~ /[#b]5/ && ($x eq $tones[4] || $y eq $tones[4]))
             ||
             ($flavor =~ /7/ && $flavor !~ /[Mm]7/ && ($x eq $tones[6] || $y eq $tones[6]))
@@ -352,7 +351,6 @@ sub generate {
             ($flavor =~ /dim/ && ($x eq $tones[6] || $y eq $tones[6]))
             ||
             ($flavor =~ /aug/ && ($x eq $tones[6] || $y eq $tones[6]))
-            )
         ) {
             print "\tDROP: $x\n" if $self->verbose;
             next;
