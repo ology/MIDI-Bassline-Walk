@@ -210,10 +210,11 @@ sub bass {
 
     # for in-key chords
     my $modal = MIDI::Bassline::Walk->new(
-        verbose   => 1,
-        guitar    => 1,
-        modal     => 1,
-        keycenter => 'Db',
+        verbose     => 1,
+        guitar      => 1,
+        chord_notes => 0,
+        modal       => 1,
+        keycenter   => 'Db',
     );
 
     # for "flavored" chords
