@@ -381,6 +381,7 @@ sub generate {
     # Get a passage of quasi-random pitches
     my @chosen = map { $voice->rand } 1 .. $num;
 
+    # Choose the right note given the scale if the tonic is set
     if ($self->tonic) {
         if ($scale eq 'pentatonic' || $scale eq 'pminor') {
             $chosen[0] = _closest($chosen[1], [ @fixed[0,1,2] ])
