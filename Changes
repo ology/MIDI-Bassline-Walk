@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Drop "flavor-clashing" scale notes for *any* scale.
+
+0.0402 2022-07-02 10:25:06
     - Improve tests slightly.
     - Add the eg/solitude program.
 
