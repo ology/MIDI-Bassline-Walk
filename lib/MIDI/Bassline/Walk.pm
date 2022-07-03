@@ -161,6 +161,15 @@ Default if not B<modal>:
 
   sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' }
 
+Otherwise:
+
+  sub {
+        my @modes = qw( ionian dorian phrygian lydian mixolydian aeolian locrian );
+        my @key_notes = get_scale_notes($self->keycenter, $modes[0]);
+        my $position = first_index { $_ eq $chord_note } @key_notes;
+        $scale = $position >= 0 ? $modes[$position] : $modes[0];
+  }
+
 Alternatives:
 
   sub { 'chromatic' }
@@ -273,19 +282,11 @@ sub generate {
     print "CHORD: $chord\n" if $self->verbose;
     print "NEXT: $next_chord\n" if $self->verbose && $next_chord;
 
-    # Parse the chord
-    my $chord_note;
-    my $flavor;
-    if ($chord =~ /^([A-G][#b]?)(.*)$/) {
-        $chord_note = $1;
-        $flavor = $2;
-    }
+    my ($chord_note, $flavor) = _parse_chord($chord);
 
-    # Parse the next chord
     my $next_chord_note;
-    if ($next_chord && $next_chord =~ /^([A-G][#b]?).*$/) {
-        $next_chord_note = $1;
-    }
+    ($next_chord_note) = _parse_chord($next_chord)
+        if $next_chord;
 
     my ($scale, $next_scale);
     if ($self->modal) {
@@ -407,6 +408,17 @@ sub generate {
     $self->_verbose_notes('CHOSEN', @chosen) if $self->verbose;
 
     return \@chosen;
+}
+
+sub _parse_chord {
+  my ($chord) = @_;
+    my $chord_note;
+    my $flavor;
+    if ($chord =~ /^([A-G][#b]?)(.*)$/) {
+        $chord_note = $1;
+        $flavor = $2;
+    }
+    return $chord_note, $flavor;
 }
 
 # Show a phrase of midinums as ISO notes
