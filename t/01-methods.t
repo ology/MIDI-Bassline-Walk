@@ -44,6 +44,13 @@ subtest attrs => sub {
 
     my $expect = [qw(-3 -2 -1 1 2 3)];
     is_deeply $obj->intervals, $expect, 'intervals';
+
+    #$obj = new_ok 'MIDI::Bassline::Walk' => [
+    #    verbose => 1,
+    #    modal   => 1,
+    #];
+    #my $got = $obj->scale->('Dm7b5');
+    #is $got, 'dorian', 'scale';
 };
 
 subtest generate => sub {
