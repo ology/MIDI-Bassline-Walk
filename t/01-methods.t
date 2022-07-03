@@ -5,26 +5,28 @@ use warnings;
 use Test::More;
 use Test::Exception;
 
+use constant BOGUS => 'foo';
+
 use_ok 'MIDI::Bassline::Walk';
 
 subtest throws => sub {
-    throws_ok { MIDI::Bassline::Walk->new(guitar => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(guitar => BOGUS) }
         qr/not a boolean/, 'bogus guitar';
-    throws_ok { MIDI::Bassline::Walk->new(modal => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(modal => BOGUS) }
         qr/not a boolean/, 'bogus modal';
-    throws_ok { MIDI::Bassline::Walk->new(chord_notes => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(chord_notes => BOGUS) }
         qr/not a boolean/, 'bogus chord_notes';
-    throws_ok { MIDI::Bassline::Walk->new(tonic => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(tonic => BOGUS) }
         qr/not a boolean/, 'bogus tonic';
-    throws_ok { MIDI::Bassline::Walk->new(verbose => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(verbose => BOGUS) }
         qr/not a boolean/, 'bogus verbose';
-    throws_ok { MIDI::Bassline::Walk->new(keycenter => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(keycenter => BOGUS) }
         qr/not a valid key/, 'bogus keycenter';
-    throws_ok { MIDI::Bassline::Walk->new(intervals => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(intervals => BOGUS) }
         qr/not an array reference/, 'bogus intervals';
-    throws_ok { MIDI::Bassline::Walk->new(octave => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(octave => BOGUS) }
         qr/not a positive integer/, 'bogus octave';
-    throws_ok { MIDI::Bassline::Walk->new(scale => 'foo') }
+    throws_ok { MIDI::Bassline::Walk->new(scale => BOGUS) }
         qr/not a code reference/, 'bogus scale';
 };
 
