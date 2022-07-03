@@ -46,7 +46,7 @@ notes until they sound suitable.
 
 The "formula" implemented by this module is basically: "Play any notes
 of the chord, modal chord scale, or chord-root scale (and drop any
-accidental notes replaced by extended jazz chords)."
+notes replaced by extended jazz chords)."
 
 The chords recognized by this module, are those known to
 L<Music::Chord::Note>.  Please see the source of that module for the
