@@ -367,7 +367,6 @@ sub generate {
 
     # Make sure there are no duplicate pitches
     @fixed = uniq @fixed;
-
     $self->_verbose_notes('NOTES', @fixed) if $self->verbose;
 
     my $voice = Music::VoiceGen->new(
