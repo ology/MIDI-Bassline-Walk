@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Fix variable naming in eg/.
+
+0.0403 2022-07-03 06:47:37
     - Drop "flavor-clashing" scale notes for *any* scale.
 
 0.0402 2022-07-02 10:25:06
