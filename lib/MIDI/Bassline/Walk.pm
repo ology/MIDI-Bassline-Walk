@@ -6,7 +6,7 @@ our $VERSION = '0.0404';
 
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
-use List::MoreUtils qw(first_index);
+use List::SomeUtils qw(first_index);
 use List::Util qw(any min uniq);
 use Music::Chord::Note;
 use Music::Note;
