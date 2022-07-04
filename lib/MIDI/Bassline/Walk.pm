@@ -161,14 +161,9 @@ Default if not B<modal>:
 
   sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' }
 
-Otherwise:
-
-  sub {
-        my @modes = qw( ionian dorian phrygian lydian mixolydian aeolian locrian );
-        my @key_notes = get_scale_notes($self->keycenter, $modes[0]);
-        my $position = first_index { $_ eq $chord_note } @key_notes;
-        $scale = $position >= 0 ? $modes[$position] : $modes[0];
-  }
+Otherwise, select the appropriate mode (ionian, dorian, phrygian,
+lydian, mixolydian, aeolian, locrian) given the named B<chord> and the
+modal B<keycenter>.
 
 Alternatives:
 
@@ -188,8 +183,26 @@ The last walks only the notes of the chord (no scale).
 has scale => (
     is      => 'ro',
     isa     => sub { croak 'not a code reference' unless ref $_[0] eq 'CODE' },
-    default => sub { sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' } },
+    builder => 1,
 );
+
+sub _build_scale {
+    my ($self) = @_;
+    if ($self->modal) {
+        return sub {
+            my ($chord) = @_;
+            my ($chord_note) = _parse_chord($chord);
+            my @modes = qw( ionian dorian phrygian lydian mixolydian aeolian locrian );
+            my @key_notes = get_scale_notes($self->keycenter, $modes[0]);
+            my $position = first_index { $_ eq $chord_note } @key_notes;
+            my $scale = $position >= 0 ? $modes[$position] : $modes[0];
+            return $scale;
+        };
+    }
+    else {
+        return sub { $_[0] =~ /^[A-G][#b]?m/ ? 'minor' : 'major' };
+    }
+}
 
 =head2 tonic
 
@@ -288,22 +301,8 @@ sub generate {
     ($next_chord_note) = _parse_chord($next_chord)
         if $next_chord;
 
-    my ($scale, $next_scale);
-    if ($self->modal) {
-        print "MODAL\n" if $self->verbose;
-        my @modes = qw( ionian dorian phrygian lydian mixolydian aeolian locrian );
-        my @key_notes = get_scale_notes($self->keycenter, $modes[0]);
-        my $position = first_index { $_ eq $chord_note } @key_notes;
-        $scale = $position >= 0 ? $modes[$position] : $modes[0];
-        if ($next_chord_note) {
-            $position = first_index { $_ eq $next_chord_note } @key_notes;
-            $next_scale = $position >= 0 ? $modes[$position] : $modes[0];
-        }
-    }
-    else {
-        $scale = $self->scale->($chord);
-        $next_scale = defined $next_chord ? $self->scale->($next_chord) : '';
-    }
+    my $scale = $self->scale->($chord);
+    my $next_scale = defined $next_chord ? $self->scale->($next_chord) : '';
 
     my $cn = Music::Chord::Note->new;
 
