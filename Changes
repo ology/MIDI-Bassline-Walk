@@ -4,6 +4,7 @@ Revision history for MIDI-Bassline-Walk
     - Build the default scale subroutine for either major/minor or modal.
     - Use the List::SomeUtils module.
     - Allow the tonic attribute to apply to any Western 7-note scale.
+    - Fix-up eg/solitude a bit.
 
 0.0404 2022-07-03 08:14:01
     - Fix variable naming in eg/.
