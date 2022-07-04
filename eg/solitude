@@ -14,8 +14,7 @@ use MIDI::Drummer::Tiny;
 use MIDI::Chord::Guitar;
 use MIDI::Util qw(set_chan_patch);
 
-# local author guitar voicing file:
-use constant VOICINGS   => undef; #"$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv";
+use constant VOICINGS   => undef; #"$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv"; # author voicings
 use constant NEXT_CHORD => 1; # consider the next chord in note choice
 
 my $bpm          = 70;
