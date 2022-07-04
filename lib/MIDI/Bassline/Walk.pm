@@ -58,7 +58,7 @@ notes until they sound suitable.
 
   $guitar = $bassline->guitar;
 
-Transpose notes below C<E2> (C<40>) up an octave.
+Transpose notes below C<E2> (midinum C<40>) up an octave.
 
 Default: C<0>
 
