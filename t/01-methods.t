@@ -52,7 +52,7 @@ subtest attrs => sub {
         verbose => VERBOSE,
         modal   => 1,
     ];
-    my $got = $obj->scale->('Dm7b5');
+    $got = $obj->scale->('Dm7b5');
     is $got, 'dorian', 'scale';
 };
 
