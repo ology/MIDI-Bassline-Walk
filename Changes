@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Build the default scale subroutine for either major/minor or modal.
     - Use the List::SomeUtils module.
     - Allow the tonic attribute to apply to any Western 7-note scale.
 
