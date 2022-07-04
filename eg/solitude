@@ -14,8 +14,8 @@ use MIDI::Drummer::Tiny;
 use MIDI::Chord::Guitar;
 use MIDI::Util qw(set_chan_patch);
 
-use constant VOICINGS => undef; # For installed MIDI::Chord::Guitar
-                    # => "$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv"; # local author
+# local author guitar voicing file:
+use constant VOICINGS   => undef; #"$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv";
 use constant NEXT_CHORD => 1; # consider the next chord in note choice
 
 my $bpm          = 70;
@@ -57,7 +57,7 @@ sub drums {
 sub chords {
     set_chan_patch($d->score, $channel++, $chord_patch);
 
-    my $mcg = MIDI::Chord::Guitar->new(voicing_file => VOICINGS);
+    my $mcg = MIDI::Chord::Guitar->new(VOICINGS ? (voicing_file => VOICINGS) : ());
 
     my $Dfmaj7  = $mcg->transform('Db3', 'maj7', 1);
     my $Bfm7    = $mcg->transform('Bb2', 'm7',   2);
