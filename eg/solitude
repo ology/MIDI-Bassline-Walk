@@ -17,6 +17,7 @@ use MIDI::Util qw(set_chan_patch);
 # local author guitar voicing file:
 use constant VOICINGS => "$ENV{HOME}/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv";
 #                     => undef; # For installed MIDI::Chord::Guitar
+use constant NEXT_CHORD => 1; # consider the next chord in note choice
 
 my $bpm          = 70;
 my $chord_patch  = 4;
@@ -271,6 +272,6 @@ sub bass {
 
 sub _walk {
     my ($bass, $chord, $n, $next) = @_;
-    my $notes = $bass->generate($chord, $n, $next);
+    my $notes = $bass->generate($chord, $n, NEXT_CHORD ? $next : undef);
     $d->note('qn', $_) for @$notes;
 }
