@@ -39,6 +39,8 @@ with('Music::PitchNum');
 
 C<MIDI::Bassline::Walk> generates randomized, walking basslines.
 
+Chords and the key use C<#> and C<b> for accidentals.
+
 The "formula" implemented by this module is basically: "Play any notes
 of the chord, modal chord scale, or chord-root scale (and drop any
 notes replaced by extended jazz chords)."
