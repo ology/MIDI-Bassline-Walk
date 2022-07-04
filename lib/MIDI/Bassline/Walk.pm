@@ -90,8 +90,8 @@ has modal => (
 
   $chord_notes = $bassline->chord_notes;
 
-Use unique chord notes that lie outside of the scale (e.g. C<b5>
-"flavor") for note choices.
+Use unique chord notes that may possibly lie outside of the scale
+(e.g. C<b5> "flavor") for note choices.
 
 Default: C<1>
 
