@@ -48,12 +48,12 @@ subtest attrs => sub {
     $got = $obj->scale->('Dm7b5');
     is $got, 'minor', 'scale';
 
-    #$obj = new_ok 'MIDI::Bassline::Walk' => [
-    #    verbose => VERBOSE,
-    #    modal   => 1,
-    #];
-    #my $got = $obj->scale->('Dm7b5');
-    #is $got, 'dorian', 'scale';
+    $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose => VERBOSE,
+        modal   => 1,
+    ];
+    my $got = $obj->scale->('Dm7b5');
+    is $got, 'dorian', 'scale';
 };
 
 subtest generate => sub {
