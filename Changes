@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Improve documentation a bit.
 
 0.0500 2022-07-03 19:52:17
     - Build the default scale subroutine for either major/minor or modal.
