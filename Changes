@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.0502 2022-07-06 05:34:15
     - Specify minimum version for L::U.
