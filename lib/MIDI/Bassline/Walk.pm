@@ -295,14 +295,14 @@ sub generate {
     $chord ||= 'C';
     $num   ||= 4;
 
-    print "CHORD: $chord\n" if $self->verbose;
-    print "NEXT: $next_chord\n" if $self->verbose && $next_chord;
-
     my ($chord_note, $flavor) = _parse_chord($chord);
 
     my $next_chord_note;
     ($next_chord_note) = _parse_chord($next_chord)
         if $next_chord;
+
+    print "CHORD: $chord => $chord_note, $flavor\n" if $self->verbose;
+    print "NEXT: $next_chord => $next_chord_note\n" if $self->verbose && $next_chord;
 
     my $scale = $self->scale->($chord);
     my $next_scale = defined $next_chord ? $self->scale->($next_chord) : '';
