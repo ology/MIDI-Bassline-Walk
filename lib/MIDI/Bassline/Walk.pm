@@ -345,17 +345,17 @@ sub generate {
             $n->en_eq('sharp');
         }
         my $y = $n->format('isobase');
-        if (($flavor =~ /[#b]5/ && ($x eq $tones[4] || $y eq $tones[4]))
+        if (($flavor =~ /[#b]5/ && $tones[4] && ($x eq $tones[4] || $y eq $tones[4]))
             ||
-            ($flavor =~ /7/ && $flavor !~ /[Mm]7/ && ($x eq $tones[6] || $y eq $tones[6]))
+            ($flavor =~ /7/ && $flavor !~ /[Mm]7/ && $tones[6] && ($x eq $tones[6] || $y eq $tones[6]))
             ||
-            ($flavor =~ /[#b]9/ && ($x eq $tones[1] || $y eq $tones[1]))
+            ($flavor =~ /[#b]9/ && $tones[1] && ($x eq $tones[1] || $y eq $tones[1]))
             ||
-            ($flavor =~ /dim/ && ($x eq $tones[2] || $y eq $tones[2]))
+            ($flavor =~ /dim/ && $tones[2] && ($x eq $tones[2] || $y eq $tones[2]))
             ||
-            ($flavor =~ /dim/ && ($x eq $tones[6] || $y eq $tones[6]))
+            ($flavor =~ /dim/ && $tones[6] && ($x eq $tones[6] || $y eq $tones[6]))
             ||
-            ($flavor =~ /aug/ && ($x eq $tones[6] || $y eq $tones[6]))
+            ($flavor =~ /aug/ && $tones[6] && ($x eq $tones[6] || $y eq $tones[6]))
         ) {
             print "\tDROP: $x\n" if $self->verbose;
             next;
