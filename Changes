@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Avoid implicit imports.
 
 0.0504 2022-08-08 05:58:25
     - Fix tone-pruning flavor logic.
