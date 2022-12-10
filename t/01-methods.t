@@ -91,14 +91,6 @@ subtest generate => sub {
     $got = $obj->generate('Dm7b5', 99); # A G# would surely not...
     $got = grep { $_ != $expect } @$got;
     ok $got, 'chord_notes';
-
-    #$obj = MIDI::Bassline::Walk->new(
-    #    verbose   => VERBOSE,
-    #    guitar    => 1,
-    #    modal     => 1,
-    #    keycenter => 'Bb',
-    #);
-    #$got = $obj->generate('F7', 4);
 };
 
 done_testing();
