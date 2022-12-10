@@ -17,6 +17,8 @@ use Music::VoiceGen ();
 use Set::Array ();
 use namespace::clean;
 
+use constant E1 => 28; # lowest note on a bass guitar in standard tuning
+
 with('Music::PitchNum');
 
 =head1 SYNOPSIS
@@ -62,7 +64,7 @@ notes until they sound suitable.
 
   $guitar = $bassline->guitar;
 
-Transpose notes below C<E2> (midinum C<40>) up an octave.
+Transpose notes below C<E1> (midinum C<28>) up an octave.
 
 Default: C<0>
 
@@ -381,7 +383,13 @@ sub generate {
     }
 
     if ($self->guitar) {
-        @fixed = sort { $a <=> $b } map { $_ < 40 ? $_ + 12 : $_ } @fixed;
+        @fixed = sort { $a <=> $b } map { $_ < E1 ? $_ + 12 : $_ } @fixed;
+    }
+
+    if ($self->wrap) {
+        my $n = Music::Note->new($self->wrap, 'isobase');
+        $n = $n->format('midinum');
+        @fixed = sort { $a <=> $b } map { $_ < $n ? $_ - 12 : $_ } @fixed;
     }
 
     # Make sure there are no duplicate pitches
