@@ -64,7 +64,8 @@ notes until they sound suitable.
 
   $guitar = $bassline->guitar;
 
-Transpose notes below C<E1> (midinum C<28>) up an octave.
+Transpose notes below C<E1> (midinum C<28>) up an octave. This is the
+lowest note of a bass guitar in standard tuning.
 
 Default: C<0>
 
