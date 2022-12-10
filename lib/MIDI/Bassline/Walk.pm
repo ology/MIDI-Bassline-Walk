@@ -29,6 +29,7 @@ with('Music::PitchNum');
   $bassline = MIDI::Bassline::Walk->new(
     verbose   => 1,
     guitar    => 1,
+    wrap      => 'C3',
     modal     => 1,
     keycenter => 'Bb',
   );
@@ -70,6 +71,22 @@ Default: C<0>
 has guitar => (
     is      => 'ro',
     isa     => \&_boolean,
+    default => sub { 0 },
+);
+
+=head2 wrap
+
+  $wrap = $bassline->wrap;
+
+Transpose notes above this pitch, down an octave.
+
+Default: C<0> (do not wrap)
+
+=cut
+
+has wrap => (
+    is      => 'ro',
+    isa     => sub { croak 'not a valid pitch' unless $_[0] =~ /^[A-G][#b]?$/ },
     default => sub { 0 },
 );
 
@@ -118,7 +135,7 @@ Default: C<C>
 
 has keycenter => (
     is      => 'ro',
-    isa     => sub { croak 'not a valid key' unless $_[0] =~ /^[A-G][#b]?$/ },
+    isa     => sub { croak 'not a valid pitch' unless $_[0] =~ /^[A-G][#b]?$/ },
     default => sub { 'C' },
 );
 
