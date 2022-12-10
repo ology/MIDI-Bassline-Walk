@@ -88,7 +88,7 @@ Default: C<0> (do not wrap)
 
 has wrap => (
     is      => 'ro',
-    isa     => sub { croak 'not a valid pitch' unless $_[0] =~ /^[A-G][#b]?$/ },
+    isa     => sub { croak 'not valid' unless $_[0] =~ /^[0A-G][#b]?$/ },
     default => sub { 0 },
 );
 
