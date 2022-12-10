@@ -4,6 +4,8 @@ package MIDI::Bassline::Walk;
 
 our $VERSION = '0.0505';
 
+use Moo;
+use strictures 2;
 use Data::Dumper::Compact qw(ddc);
 use Carp qw(croak);
 use List::SomeUtils qw(first_index);
@@ -13,8 +15,6 @@ use Music::Note ();
 use Music::Scales qw(get_scale_notes get_scale_MIDI);
 use Music::VoiceGen ();
 use Set::Array ();
-use Moo;
-use strictures 2;
 use namespace::clean;
 
 with('Music::PitchNum');
