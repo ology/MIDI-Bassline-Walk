@@ -88,7 +88,7 @@ Default: C<0> (do not wrap)
 
 has wrap => (
     is      => 'ro',
-    isa     => sub { croak 'not valid' unless $_[0] =~ /^[0A-G][#b]?$/ },
+    isa     => sub { croak 'not valid' unless $_[0] =~ /^[0A-G][#b]?\d?$/ },
     default => sub { 0 },
 );
 
@@ -387,7 +387,7 @@ sub generate {
     }
 
     if ($self->wrap) {
-        my $n = Music::Note->new($self->wrap, 'isobase');
+        my $n = Music::Note->new($self->wrap, 'ISO');
         $n = $n->format('midinum');
         @fixed = sort { $a <=> $b } map { $_ < $n ? $_ - 12 : $_ } @fixed;
     }
