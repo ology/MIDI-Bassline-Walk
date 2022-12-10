@@ -97,4 +97,18 @@ subtest generate => sub {
     ok $got, 'chord_notes';
 };
 
+subtest wrap => sub {
+    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose   => VERBOSE,
+        octave    => 3,
+        wrap      => 'C3',
+        modal     => 1,
+        keycenter => 'C',
+    ];
+
+    my $got = $obj->generate('C', 4);
+    $got = grep { $_ <= 48 } @$got;
+    is $got, 4, 'wrap';
+};
+
 done_testing();
