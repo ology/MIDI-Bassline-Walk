@@ -29,6 +29,8 @@ subtest throws => sub {
         qr/not a positive integer/, 'bogus octave';
     throws_ok { MIDI::Bassline::Walk->new(scale => BOGUS) }
         qr/not a code reference/, 'bogus scale';
+    throws_ok { MIDI::Bassline::Walk->new(wrap => BOGUS) }
+        qr/not valid/, 'bogus wrap';
 };
 
 subtest attrs => sub {
@@ -47,12 +49,14 @@ subtest attrs => sub {
     is $got, 'major', 'scale';
     $got = $obj->scale->('Dm7b5');
     is $got, 'minor', 'scale';
+};
 
-    $obj = new_ok 'MIDI::Bassline::Walk' => [
+subtest modal => sub {
+    my $obj = new_ok 'MIDI::Bassline::Walk' => [
         verbose => VERBOSE,
         modal   => 1,
     ];
-    $got = $obj->scale->('Dm7b5');
+    my $got = $obj->scale->('Dm7b5');
     is $got, 'dorian', 'scale';
 };
 
