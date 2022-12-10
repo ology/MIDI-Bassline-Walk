@@ -161,14 +161,14 @@ has intervals => (
 
 Lowest MIDI octave.
 
-Default: C<2>
+Default: C<1>
 
 =cut
 
 has octave => (
     is      => 'ro',
     isa     => sub { croak 'not a positive integer' unless $_[0] =~ /^\d+$/ },
-    default => sub { 2 },
+    default => sub { 1 },
 );
 
 =head2 scale
