@@ -268,6 +268,8 @@ sub _boolean {
 
 =head1 METHODS
 
+=for Pod::Coverage E1
+
 =head2 new
 
   $bassline = MIDI::Bassline::Walk->new;
