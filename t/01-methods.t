@@ -51,7 +51,7 @@ subtest attrs => sub {
     is $got, 'minor', 'scale';
 };
 
-subtest modal => sub {
+subtest scale => sub {
     my $obj = new_ok 'MIDI::Bassline::Walk' => [
         verbose => VERBOSE,
         modal   => 1,
