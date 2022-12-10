@@ -80,7 +80,8 @@ has guitar => (
 
   $wrap = $bassline->wrap;
 
-Transpose notes above this ISO pitch (e.g. C3), down an octave.
+Transpose notes that are above this ISO pitch (e.g. C3), down an
+octave.
 
 Default: C<0> (do not wrap)
 
