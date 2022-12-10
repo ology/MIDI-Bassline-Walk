@@ -389,7 +389,7 @@ sub generate {
     if ($self->wrap) {
         my $n = Music::Note->new($self->wrap, 'ISO');
         $n = $n->format('midinum');
-        @fixed = sort { $a <=> $b } map { $_ < $n ? $_ - 12 : $_ } @fixed;
+        @fixed = sort { $a <=> $b } map { $_ > $n ? $_ - 12 : $_ } @fixed;
     }
 
     # Make sure there are no duplicate pitches
