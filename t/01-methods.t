@@ -78,7 +78,10 @@ subtest generate => sub {
     my $got = $obj->generate('C7b5', 4);
     is scalar(@$got), 4, 'generate';
 
-    $got = $obj->generate('D#/A#', 4);
+    $got = $obj->generate('D/A', 4);
+    is scalar(@$got), 4, 'generate';
+
+    $got = $obj->generate('D', 4, 'C/G');
     is scalar(@$got), 4, 'generate';
 
     $obj = new_ok 'MIDI::Bassline::Walk' => [
