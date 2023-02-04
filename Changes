@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - No! Fix the chord *before* parsing.
+
+0.0507 2023-02-04 14:46:18
     - Do not allow uninterpretable X/Y type chords.
 
 0.0506 2022-12-10 12:18:49
