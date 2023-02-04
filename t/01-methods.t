@@ -45,10 +45,6 @@ subtest attrs => sub {
 
     my $got = ref $obj->scale;
     is $got, 'CODE', 'scale';
-    $got = $obj->scale->('C7b5');
-    is $got, 'major', 'scale';
-    $got = $obj->scale->('Dm7b5');
-    is $got, 'minor', 'scale';
 };
 
 subtest modal => sub {
@@ -56,7 +52,9 @@ subtest modal => sub {
         verbose => VERBOSE,
         modal   => 1,
     ];
-    my $got = $obj->scale->('Dm7b5');
+    my $got = $obj->scale->('C7b5');
+    is $got, 'ionian', 'scale';
+    $got = $obj->scale->('Dm7b5');
     is $got, 'dorian', 'scale';
 };
 
