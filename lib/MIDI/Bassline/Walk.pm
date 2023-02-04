@@ -319,6 +319,10 @@ sub generate {
     $num   ||= 4;
 
     my ($chord_note, $flavor) = _parse_chord($chord);
+    if ($flavor =~ /^\//) {
+        $flavor = '';
+        $chord  = $chord_note;
+    }
 
     my $next_chord_note;
     ($next_chord_note) = _parse_chord($next_chord)
