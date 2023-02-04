@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Do not allow uninterpretable X/Y type chords.
 
 0.0506 2022-12-10 12:18:49
     - Add the wrap attribute.
