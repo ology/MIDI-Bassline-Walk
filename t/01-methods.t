@@ -47,6 +47,18 @@ subtest attrs => sub {
     is $got, 'CODE', 'scale';
 };
 
+subtest scale => sub {
+    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose => VERBOSE,
+    ];
+    my $got = $obj->scale->('C7b5');
+    is $got, 'major', 'scale';
+    $got = $obj->scale->('Dm7b5');
+    is $got, 'minor', 'scale';
+    $got = $obj->scale->('D#/A#');
+    is $got, 'major', 'scale';
+};
+
 subtest modal => sub {
     my $obj = new_ok 'MIDI::Bassline::Walk' => [
         verbose => VERBOSE,
