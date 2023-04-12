@@ -26,6 +26,7 @@ my $d = MIDI::Drummer::Tiny->new(
     file => $0 . '.mid',
     bpm  => $bpm,
     bars => 31,
+    volume => 127,
 );
 
 my $channel = 0; # Internal increment
@@ -213,6 +214,7 @@ sub bass {
         guitar      => 1,
         chord_notes => 0,
         modal       => 1,
+        octave      => 2,
         keycenter   => 'Db',
     );
 
