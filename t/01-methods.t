@@ -96,6 +96,8 @@ subtest generate => sub {
     $got = grep { $_ eq $got->[0] } @$expect;
     ok $got, 'tonic';
 
+#    $got = $obj->generate('C', 1); # XXX fails
+
     $obj = new_ok 'MIDI::Bassline::Walk' => [
         verbose => VERBOSE,
         modal   => 1,
