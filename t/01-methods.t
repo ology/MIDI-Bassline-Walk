@@ -91,14 +91,12 @@ subtest generate => sub {
         verbose => VERBOSE,
         tonic   => 1,
     ];
-    my $expect = [qw(24 29 31)]; # I,IV,V of the C1 major scale
+    my $expect = 24; # I of the C1 major scale
     $got = $obj->generate('C', 4);
-    $got = grep { $_ eq $got->[0] } @$expect;
-    ok $got, 'tonic';
+    is $got->[0], $expect, 'tonic';
 
     $got = $obj->generate('C', 1);
-    $got = grep { $_ eq $got->[0] } @$expect;
-    ok $got, 'tonic';
+    is $got->[0], $expect, 'tonic';
 
     $obj = new_ok 'MIDI::Bassline::Walk' => [
         verbose => VERBOSE,
