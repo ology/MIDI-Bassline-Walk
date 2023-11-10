@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Do not trample the existing key!
+
+0.0509 2023-11-10 08:49:24
     - Allow single note tonic computation.
 
 0.0508 2023-02-04 15:09:07
