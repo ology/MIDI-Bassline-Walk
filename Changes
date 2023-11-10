@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - No. Tonic means play the first scale note!
+
+0.0511 2023-11-10 13:40:53
     - Play the IV note for 7-note scales, instead of the iii.
 
 0.0510 2023-11-10 09:04:37
