@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Allow single note tonic computation.
 
 0.0508 2023-02-04 15:09:07
     - No! Fix the chord *before* parsing.
