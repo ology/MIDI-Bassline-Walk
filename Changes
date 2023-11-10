@@ -1,6 +1,8 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+
+0.0510 2023-11-10 09:04:37
     - Do not trample the existing key!
 
 0.0509 2023-11-10 08:49:24
