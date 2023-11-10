@@ -281,6 +281,7 @@ sub _boolean {
       chord_notes => $chord_notes,
       modal       => $modal,
       keycenter   => $key_center,
+      tonic       => $tonic,
       verbose     => $verbose,
   );
 
