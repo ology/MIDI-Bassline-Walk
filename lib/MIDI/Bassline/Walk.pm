@@ -2,7 +2,7 @@ package MIDI::Bassline::Walk;
 
 # ABSTRACT: Generate walking basslines
 
-our $VERSION = '0.0509';
+our $VERSION = '0.0510';
 
 use Moo;
 use strictures 2;
