@@ -91,7 +91,7 @@ subtest generate => sub {
         verbose => VERBOSE,
         tonic   => 1,
     ];
-    my $expect = [qw(24 28 31)]; # I,III,V of the C1 major scale
+    my $expect = [qw(24 29 31)]; # I,IV,V of the C1 major scale
     $got = $obj->generate('C', 4);
     $got = grep { $_ eq $got->[0] } @$expect;
     ok $got, 'tonic';
