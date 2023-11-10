@@ -232,8 +232,10 @@ sub _build_scale {
 
   $tonic = $bassline->tonic;
 
-Play one of the first, third or fifth (I, III, V) notes of the scale
-on the first note of the generated phrase.
+Play one of the first, fourth, or fifth (I, IV, V) notes of a 7-note
+scale on the first note of the generated phrase. If the scale is
+either C<pentatonic> or C<pminor>, play the first, third, or fifth (I,
+iii, V) notes, on the first phrase note.
 
 Default: C<0>
 
@@ -421,7 +423,7 @@ sub generate {
             $chosen[0] = _closest($ckey, [ @fixed[0,1,2] ])
         }
         elsif (@fixed == 7) { # standard, 7-note Western scale
-            $chosen[0] = _closest($ckey, [ @fixed[0,2,4] ])
+            $chosen[0] = _closest($ckey, [ @fixed[0,3,4] ])
         }
     }
 
