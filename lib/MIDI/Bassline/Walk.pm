@@ -416,11 +416,12 @@ sub generate {
 
     # Choose the right note given the scale if the tonic is set
     if ($self->tonic) {
+        my $key = @chosen == 1 ? $chosen[0] : $chosen[1];
         if ($scale eq 'pentatonic' || $scale eq 'pminor') {
-            $chosen[0] = _closest($chosen[1], [ @fixed[0,1,2] ])
+            $chosen[0] = _closest($key, [ @fixed[0,1,2] ])
         }
         elsif (@fixed == 7) { # standard, 7-note Western scale
-            $chosen[0] = _closest($chosen[1], [ @fixed[0,2,4] ])
+            $chosen[0] = _closest($key, [ @fixed[0,2,4] ])
         }
     }
 
