@@ -245,6 +245,22 @@ has tonic => (
     default => sub { 0 },
 );
 
+=head2 positions
+
+  $positions = $bassline->positions;
+
+Optional lists of allowed notes for major and minor scales.
+
+Example: C<{ major =E<gt> [0..6], minor =E<gt> [0..6] }>
+
+Default: C<undef>
+
+=cut
+
+has positions => (
+    is => 'ro',
+);
+
 =head2 verbose
 
   $verbose = $bassline->verbose;
@@ -274,6 +290,7 @@ sub _boolean {
 
   $bassline = MIDI::Bassline::Walk->new;
   $bassline = MIDI::Bassline::Walk->new(
+      positions   => $positions,
       guitar      => $guitar,
       intervals   => $intervals,
       octave      => $octave,
@@ -339,7 +356,20 @@ sub generate {
     my @notes = map { $self->pitchnum($_) }
         $cn->chord_with_octave($chord, $self->octave);
 
-    my @pitches = $scale ? get_scale_MIDI($chord_note, $self->octave, $scale) : ();
+    my @pitches;
+    if ($self->positions && $scale) {
+        my @scale = get_scale_MIDI($chord_note, $self->octave, $scale);
+        for my $n (0 .. $#scale) {
+            push @pitches, $scale[$n] if defined $self->positions->{$scale}[$n];
+        }
+    }
+    elsif ($scale) {
+        @pitches = get_scale_MIDI($chord_note, $self->octave, $scale);
+    }
+    else {
+        @pitches = ();
+    }
+
     my @next_pitches = $next_scale ? get_scale_MIDI($next_chord_note, $self->octave, $next_scale) : ();
 
     # Add unique chord notes to the pitches
@@ -404,16 +434,22 @@ sub generate {
     @fixed = uniq @fixed;
     $self->_verbose_notes('NOTES', @fixed) if $self->verbose;
 
-    my $voice = Music::VoiceGen->new(
-        pitches   => \@fixed,
-        intervals => $self->intervals,
-    );
+    my @chosen;
+    if (@fixed > 1) {
+        my $voice = Music::VoiceGen->new(
+            pitches   => \@fixed,
+            intervals => $self->intervals,
+        );
 
-    # Try to start the phrase in the middle of the scale
-    $voice->context($fixed[int @fixed / 2]);
+        # Try to start the phrase in the middle of the scale
+        $voice->context($fixed[int @fixed / 2]);
 
-    # Get a passage of quasi-random pitches
-    my @chosen = map { $voice->rand } 1 .. $num;
+        # Get a passage of quasi-random pitches
+        @chosen = map { $voice->rand } 1 .. $num;
+    }
+    else {
+        @chosen = ($fixed[0]) x $num;
+    }
 
     # Choose the right note given the scale if the tonic is set
     if ($self->tonic) {

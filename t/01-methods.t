@@ -133,4 +133,14 @@ subtest wrap => sub {
     is $got, 4, 'wrap';
 };
 
+subtest positions => sub {
+    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+        verbose     => VERBOSE,
+        chord_notes => 0,
+        positions   => { major => [3], minor => [3] },
+    ];
+    my $got = $obj->generate('C', 4);
+    is_deeply $got, [24,24,24,24], 'positions';
+};
+
 done_testing();

@@ -1,6 +1,9 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Enable the positions attribute, to specify allowed scale degrees.
+
+0.0512 2023-11-10 13:51:54
     - No. Tonic means play the first scale note!
 
 0.0511 2023-11-10 13:40:53
