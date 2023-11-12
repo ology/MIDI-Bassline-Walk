@@ -1,7 +1,7 @@
 Revision history for Music-Bassline-Generator
 
 {{$NEXT}}
-    - Begin rename to Music::Bassline::Generator.
+    - Rename to Music::Bassline::Generator.
 
 0.0601 2023-11-11 19:36:32
     - Clean-up things!
