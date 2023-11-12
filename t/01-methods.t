@@ -119,7 +119,7 @@ subtest generate => sub {
 };
 
 subtest wrap => sub {
-    # set the octave above the wrap!
+    # set the octave at the wrap!
     my $obj = new_ok 'MIDI::Bassline::Walk' => [
         verbose   => VERBOSE,
         octave    => 3,
