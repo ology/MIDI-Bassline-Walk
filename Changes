@@ -1,6 +1,7 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+    - Begin rename to Music::Bassline::Generator.
 
 0.0601 2023-11-11 19:36:32
     - Clean-up things!

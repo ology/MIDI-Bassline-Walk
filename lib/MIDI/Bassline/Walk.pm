@@ -1,8 +1,8 @@
 package MIDI::Bassline::Walk;
 
-# ABSTRACT: Generate walking basslines
+# ABSTRACT: Generate walking basslines - DEPRECATED
 
-our $VERSION = '0.0601';
+our $VERSION = '0.0601_1';
 
 use Moo;
 use strictures 2;
@@ -27,7 +27,7 @@ with('Music::PitchNum');
 
   my $bassline = MIDI::Bassline::Walk->new(verbose => 1);
   my $notes = $bassline->generate('F7b5', 8);
-
+DEPRECATED
   $bassline = MIDI::Bassline::Walk->new(
     verbose   => 1,
     guitar    => 1,
@@ -40,6 +40,9 @@ with('Music::PitchNum');
   # $score->n('qn', $_) for @$notes; # MIDI
 
 =head1 DESCRIPTION
+
+* B<THIS MODULE HAS BEEN DEPRECATED AND MOVED TO>
+L<Music::Bassline::Generator>. *
 
 C<MIDI::Bassline::Walk> generates randomized, walking basslines.
 
