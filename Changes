@@ -1,6 +1,9 @@
 Revision history for Music-Bassline-Generator
 
 {{$NEXT}}
+    - Link to the previous versions on the backpan.
+
+0.0604 2023-11-12 10:02:06
     - Ack! This module is not deprecated!!
 
 0.0603 2023-11-11 20:19:44
