@@ -8,9 +8,9 @@ use Test::Exception;
 use constant BOGUS   => 'foo';
 use constant VERBOSE => 0;
 
-use_ok 'MIDI::Bassline::Walk';
-
 my $module = 'Music::Bassline::Generator';
+
+use_ok $module;
 
 subtest throws => sub {
     throws_ok { $module->new(guitar => BOGUS) }

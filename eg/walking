@@ -4,7 +4,7 @@ use warnings;
 
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util);
 use MIDI::Util qw(setup_score set_chan_patch midi_format);
-use MIDI::Bassline::Walk;
+use Music::Bassline::Generator;
 use Music::Chord::Note;
 
 my @chords = @ARGV ? @ARGV : qw(
@@ -23,7 +23,7 @@ $score->write_score("$0.mid");
 
 sub bass {
     set_chan_patch($score, 0, 35);
-    my $bassline = MIDI::Bassline::Walk->new(
+    my $bassline = Music::Bassline::Generator->new(
         verbose => 1,
 #        tonic   => 1,
 #        scale => sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' },

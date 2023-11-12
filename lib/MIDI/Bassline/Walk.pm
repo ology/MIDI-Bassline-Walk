@@ -1,4 +1,4 @@
-package MIDI::Bassline::Walk;
+package Music::Bassline::Generator;
 
 # ABSTRACT: Generate walking basslines - DEPRECATED
 
@@ -23,12 +23,11 @@ with('Music::PitchNum');
 
 =head1 SYNOPSIS
 
-  use MIDI::Bassline::Walk;
+  use Music::Bassline::Generator;
 
-  my $bassline = MIDI::Bassline::Walk->new(verbose => 1);
+  my $bassline = Music::Bassline::Generator->new(verbose => 1);
   my $notes = $bassline->generate('F7b5', 8);
-DEPRECATED
-  $bassline = MIDI::Bassline::Walk->new(
+  $bassline = Music::Bassline::Generator->new(
     verbose   => 1,
     guitar    => 1,
     wrap      => 'C3',
@@ -41,10 +40,7 @@ DEPRECATED
 
 =head1 DESCRIPTION
 
-* B<THIS MODULE HAS BEEN DEPRECATED AND MOVED TO>
-L<Music::Bassline::Generator>. *
-
-C<MIDI::Bassline::Walk> generates randomized, walking basslines.
+C<Music::Bassline::Generator> generates randomized, walking basslines.
 
 Chords and the key use C<#> and C<b> for accidentals.
 
@@ -293,8 +289,8 @@ sub _boolean {
 
 =head2 new
 
-  $bassline = MIDI::Bassline::Walk->new;
-  $bassline = MIDI::Bassline::Walk->new(
+  $bassline = Music::Bassline::Generator->new;
+  $bassline = Music::Bassline::Generator->new(
       positions   => $positions,
       guitar      => $guitar,
       intervals   => $intervals,
@@ -307,7 +303,7 @@ sub _boolean {
       verbose     => $verbose,
   );
 
-Create a new C<MIDI::Bassline::Walk> object.
+Create a new C<Music::Bassline::Generator> object.
 
 =head2 generate
 

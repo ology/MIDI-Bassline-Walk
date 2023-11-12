@@ -1,2 +1,2 @@
-# MIDI-Bassline-Walk
-Generate walking basslines
+# Music-Bassline-Generator
+Generate algorithmic basslines

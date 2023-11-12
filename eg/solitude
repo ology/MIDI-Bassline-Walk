@@ -7,9 +7,9 @@ use strict;
 use warnings;
 
 # local author directories:
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Bassline-Walk MIDI-Chord-Guitar Music-Duration MIDI-Drummer-Tiny MIDI-Util);
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-Bassline-Generator MIDI-Chord-Guitar Music-Duration MIDI-Drummer-Tiny MIDI-Util);
 
-use MIDI::Bassline::Walk;
+use Music::Bassline::Generator;
 use MIDI::Drummer::Tiny;
 use MIDI::Chord::Guitar;
 use MIDI::Util qw(set_chan_patch);
@@ -209,7 +209,7 @@ sub bass {
     my $duration = $d->half;
 
     # for in-key chords
-    my $modal = MIDI::Bassline::Walk->new(
+    my $modal = Music::Bassline::Generator->new(
         verbose     => 1,
         guitar      => 1,
         chord_notes => 0,
@@ -219,7 +219,7 @@ sub bass {
     );
 
     # for "flavored" chords
-    my $tandem = MIDI::Bassline::Walk->new(
+    my $tandem = Music::Bassline::Generator->new(
         verbose => 1,
         guitar  => 1,
         scale   => sub { '' }, # chord notes only
