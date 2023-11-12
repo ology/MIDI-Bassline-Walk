@@ -364,7 +364,7 @@ sub generate {
     if ($self->positions && $scale) {
         my @scale = get_scale_MIDI($chord_note, $self->octave, $scale);
         for my $n (0 .. $#scale) {
-            push @pitches, $scale[$n] if grep { $_ == $n } $self->positions->{$scale}->@*;
+            push @pitches, $scale[$n] if grep { $_ == $n } @{ $self->positions->{$scale} };
         }
     }
     elsif ($scale) {
