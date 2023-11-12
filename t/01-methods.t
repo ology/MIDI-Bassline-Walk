@@ -137,10 +137,10 @@ subtest positions => sub {
     my $obj = new_ok 'MIDI::Bassline::Walk' => [
         verbose     => VERBOSE,
         chord_notes => 0,
-        positions   => { major => [3], minor => [3] },
+        positions   => { major => [1], minor => [1] },
     ];
     my $got = $obj->generate('C', 4);
-    is_deeply $got, [24,24,24,24], 'positions';
+    is_deeply $got, [26,26,26,26], 'positions';
 };
 
 done_testing();
