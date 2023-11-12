@@ -129,8 +129,9 @@ subtest wrap => sub {
     ];
 
     my $got = $obj->generate('C', 4);
+    my $expect = 4;
     $got = grep { $_ <= 48 } @$got;
-    is $got, 4, 'wrap';
+    is $got, $expect, 'wrap';
 };
 
 subtest positions => sub {
@@ -139,8 +140,9 @@ subtest positions => sub {
         chord_notes => 0,
         positions   => { major => [1], minor => [1] },
     ];
+    my $expect = [26,26,26,26];
     my $got = $obj->generate('C', 4);
-    is_deeply $got, [26,26,26,26], 'positions';
+    is_deeply $got, $expect, 'positions';
 };
 
 done_testing();
