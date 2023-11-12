@@ -27,8 +27,8 @@ with('Music::PitchNum');
 
   my $bassline = Music::Bassline::Generator->new(verbose => 1);
   my $notes = $bassline->generate('F7b5', 8);
+
   $bassline = Music::Bassline::Generator->new(
-    verbose   => 1,
     guitar    => 1,
     wrap      => 'C3',
     modal     => 1,
