@@ -1,6 +1,8 @@
 Revision history for MIDI-Bassline-Walk
 
 {{$NEXT}}
+
+0.0600 2023-11-11 09:07:48
     - Enable the positions attribute, to specify allowed scale degrees.
 
 0.0512 2023-11-10 13:51:54
