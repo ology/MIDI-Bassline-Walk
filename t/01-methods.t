@@ -10,31 +10,33 @@ use constant VERBOSE => 0;
 
 use_ok 'MIDI::Bassline::Walk';
 
+my $module = 'Music::Bassline::Generator';
+
 subtest throws => sub {
-    throws_ok { MIDI::Bassline::Walk->new(guitar => BOGUS) }
+    throws_ok { $module->new(guitar => BOGUS) }
         qr/not a boolean/, 'bogus guitar';
-    throws_ok { MIDI::Bassline::Walk->new(modal => BOGUS) }
+    throws_ok { $module->new(modal => BOGUS) }
         qr/not a boolean/, 'bogus modal';
-    throws_ok { MIDI::Bassline::Walk->new(chord_notes => BOGUS) }
+    throws_ok { $module->new(chord_notes => BOGUS) }
         qr/not a boolean/, 'bogus chord_notes';
-    throws_ok { MIDI::Bassline::Walk->new(tonic => BOGUS) }
+    throws_ok { $module->new(tonic => BOGUS) }
         qr/not a boolean/, 'bogus tonic';
-    throws_ok { MIDI::Bassline::Walk->new(verbose => BOGUS) }
+    throws_ok { $module->new(verbose => BOGUS) }
         qr/not a boolean/, 'bogus verbose';
-    throws_ok { MIDI::Bassline::Walk->new(keycenter => BOGUS) }
+    throws_ok { $module->new(keycenter => BOGUS) }
         qr/not a valid pitch/, 'bogus keycenter';
-    throws_ok { MIDI::Bassline::Walk->new(intervals => BOGUS) }
+    throws_ok { $module->new(intervals => BOGUS) }
         qr/not an array reference/, 'bogus intervals';
-    throws_ok { MIDI::Bassline::Walk->new(octave => BOGUS) }
+    throws_ok { $module->new(octave => BOGUS) }
         qr/not a positive integer/, 'bogus octave';
-    throws_ok { MIDI::Bassline::Walk->new(scale => BOGUS) }
+    throws_ok { $module->new(scale => BOGUS) }
         qr/not a code reference/, 'bogus scale';
-    throws_ok { MIDI::Bassline::Walk->new(wrap => BOGUS) }
+    throws_ok { $module->new(wrap => BOGUS) }
         qr/not valid/, 'bogus wrap';
 };
 
 subtest attrs => sub {
-    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+    my $obj = new_ok $module => [
         verbose => VERBOSE,
     ];
 
@@ -48,7 +50,7 @@ subtest attrs => sub {
 };
 
 subtest scale => sub {
-    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+    my $obj = new_ok $module => [
         verbose => VERBOSE,
     ];
     my $got = $obj->scale->('C7b5');
@@ -60,7 +62,7 @@ subtest scale => sub {
 };
 
 subtest modal => sub {
-    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+    my $obj = new_ok $module => [
         verbose => VERBOSE,
         modal   => 1,
     ];
@@ -71,7 +73,7 @@ subtest modal => sub {
 };
 
 subtest generate => sub {
-    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+    my $obj = new_ok $module => [
         verbose => VERBOSE,
     ];
 
@@ -87,7 +89,7 @@ subtest generate => sub {
     $got = $obj->generate('D', 1);
     is scalar(@$got), 1, 'generate';
 
-    $obj = new_ok 'MIDI::Bassline::Walk' => [
+    $obj = new_ok $module => [
         verbose => VERBOSE,
         tonic   => 1,
     ];
@@ -98,7 +100,7 @@ subtest generate => sub {
     $got = $obj->generate('C', 1);
     is $got->[0], $expect, 'tonic';
 
-    $obj = new_ok 'MIDI::Bassline::Walk' => [
+    $obj = new_ok $module => [
         verbose => VERBOSE,
         modal   => 1,
     ];
@@ -107,7 +109,7 @@ subtest generate => sub {
     $got = grep { $_ != $expect } @$got;
     ok $got, 'modal';
 
-    $obj = new_ok 'MIDI::Bassline::Walk' => [
+    $obj = new_ok $module => [
         verbose     => VERBOSE,
         modal       => 1,
         chord_notes => 0,
@@ -120,7 +122,7 @@ subtest generate => sub {
 
 subtest wrap => sub {
     # set the octave at the wrap!
-    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+    my $obj = new_ok $module => [
         verbose   => VERBOSE,
         octave    => 3,
         wrap      => 'C3',
@@ -135,7 +137,7 @@ subtest wrap => sub {
 };
 
 subtest positions => sub {
-    my $obj = new_ok 'MIDI::Bassline::Walk' => [
+    my $obj = new_ok $module => [
         verbose     => VERBOSE,
         chord_notes => 0,
         positions   => { major => [1], minor => [1] },
