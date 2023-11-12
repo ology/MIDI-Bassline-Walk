@@ -251,7 +251,9 @@ has tonic => (
 
 Optional lists of allowed notes for major and minor scales.
 
-Example: C<{ major =E<gt> [0..6], minor =E<gt> [0..6] }> # Everything but the 7th!
+Example: C<{ major =E<gt> [0..6], minor =E<gt> [0..6] }>
+
+# ^ Everything but the 7th!
 
 Default: C<undef>
 
