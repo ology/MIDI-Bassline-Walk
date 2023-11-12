@@ -1,6 +1,9 @@
 Revision history for Music-Bassline-Generator
 
 {{$NEXT}}
+    - Oops. Revert array deref syntax to the old-skool way.
+
+0.0606 2023-11-12 10:19:36
     - Fix ABSTRACT again!
 
 0.0605 2023-11-12 10:06:45
