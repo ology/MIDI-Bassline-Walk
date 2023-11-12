@@ -2,7 +2,7 @@ package Music::Bassline::Generator;
 
 # ABSTRACT: Generate walking basslines - DEPRECATED
 
-our $VERSION = '0.0601_1';
+our $VERSION = '0.0602';
 
 use Moo;
 use strictures 2;
