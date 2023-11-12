@@ -1,6 +1,9 @@
 Revision history for Music-Bassline-Generator
 
 {{$NEXT}}
+    - Fix ABSTRACT again!
+
+0.0605 2023-11-12 10:06:45
     - Link to the previous versions on the backpan.
 
 0.0604 2023-11-12 10:02:06
