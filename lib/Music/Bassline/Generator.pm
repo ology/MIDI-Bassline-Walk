@@ -522,6 +522,10 @@ __END__
 
 =head1 SEE ALSO
 
+Previous versions of this module can be found at
+L<http://backpan.cpantesters.org/authors/id/G/GE/GENE/>,
+named "MIDI::Bassline::Walk."
+
 The F<t/> and F<eg/> programs
 
 L<Data::Dumper::Compact>
