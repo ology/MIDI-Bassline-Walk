@@ -1,6 +1,6 @@
 package Music::Bassline::Generator;
 
-# ABSTRACT: Generate walking basslines
+# ABSTRACT: Generate musical basslines
 
 our $VERSION = '0.0605';
 
