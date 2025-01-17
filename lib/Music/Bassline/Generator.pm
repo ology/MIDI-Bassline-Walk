@@ -15,6 +15,7 @@ use Music::Note ();
 use Music::Scales qw(get_scale_notes get_scale_MIDI);
 use Music::VoiceGen ();
 use Set::Array ();
+use Try::Tiny qw(try catch);
 use namespace::clean;
 
 use constant E1 => 28; # lowest note on a bass guitar in standard tuning
@@ -440,16 +441,22 @@ sub generate {
 
     my @chosen;
     if (@fixed > 1) {
-        my $voice = Music::VoiceGen->new(
-            pitches   => \@fixed,
-            intervals => $self->intervals,
-        );
+        try {
+            my $voice = Music::VoiceGen->new(
+                pitches   => \@fixed,
+                intervals => $self->intervals,
+            );
 
-        # Try to start the phrase in the middle of the scale
-        $voice->context($fixed[int @fixed / 2]);
+            # Try to start the phrase in the middle of the scale
+            $voice->context($fixed[int @fixed / 2]);
 
-        # Get a passage of quasi-random pitches
-        @chosen = map { $voice->rand } 1 .. $num;
+            # Get a passage of quasi-random pitches
+            @chosen = map { $voice->rand } 1 .. $num;
+        }
+        catch {
+            # warn "Can't instantiate Music::VoiceGen: $_\n";
+            @chosen = ($fixed[0]) x $num;
+        };
     }
     else {
         @chosen = ($fixed[0]) x $num;
