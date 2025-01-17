@@ -58,7 +58,7 @@ possibly sour notes.  This is an approximate composition tool, and not
 a drop-in bass player.  Import rendered MIDI into a DAW and alter
 notes until they sound suitable.
 
-To constrain the notes to a chosen set of scale dregrees, use the
+To constrain the notes to a chosen set of scale degrees, use the
 B<positions> attribute described below.
 
 =head1 ATTRIBUTES
