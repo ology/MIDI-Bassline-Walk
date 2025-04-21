@@ -2,7 +2,9 @@ package Music::Bassline::Generator;
 
 # ABSTRACT: Generate musical basslines
 
-our $VERSION = '0.0608';
+our $VERSION = '0.0609';
+
+use 5.024;
 
 use Moo;
 use strictures 2;
